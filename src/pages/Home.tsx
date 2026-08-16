@@ -212,7 +212,7 @@ const PLACEMENTS_24_25 = [
 ];
 
 export default function Home() {
-  const featuredDepts = DEPARTMENTS.filter(d => ['cse', 'ece', 'aids'].includes(d.id));
+  const featuredDepts = DEPARTMENTS.filter(d => ['freshman', 'cse', 'ece', 'aids'].includes(d.id));
 
   // Interactive Notice Board State
   const [noticeTab, setNoticeTab] = useState<'circulars' | 'exams'>('circulars');
@@ -625,7 +625,7 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredDepts.map((dept, idx) => (
               <motion.div
                 key={dept.id}

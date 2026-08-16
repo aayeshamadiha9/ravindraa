@@ -61,8 +61,9 @@ export default function Navbar({}: NavbarProps) {
     },
     {
       label: 'Departments',
-      href: '/departments/cse',
+      href: '/departments/freshman',
       subitems: [
+        { label: 'FRESHMAN (I B.Tech)', href: '/departments/freshman' },
         { label: 'Computer Science and Engineering', href: '/departments/cse' },
         { label: 'Electronics and Communication Engineering', href: '/departments/ece' },
         { label: 'Computer Science and Engineering (AI)', href: '/departments/cai' },
@@ -84,11 +85,21 @@ export default function Navbar({}: NavbarProps) {
       ]
     },
     {
-      label: 'IQAC and R&D',
+      label: 'IQAC',
       href: '/iqac',
       subitems: [
-        { label: 'IQAC', href: '/iqac' },
-        { label: 'R&D', href: '/rd' },
+        { label: 'Internal Quality Assurance Cell', href: '/iqac?tab=iqac-cell' },
+        { label: 'NAAC Accreditation', href: '/iqac?tab=naac' },
+        { label: 'AICTE Mandatory Disclosures', href: '/iqac?tab=aicte' },
+        { label: 'NBA Accreditation', href: '/iqac?tab=nba' },
+      ]
+    },
+    {
+      label: 'R&D',
+      href: '/rd',
+      subitems: [
+        { label: 'Research Overview & Grants', href: '/rd?tab=home' },
+        { label: 'Research Resources & IEEE Journals', href: '/rd?tab=resources' },
       ]
     },
     {
@@ -139,31 +150,151 @@ export default function Navbar({}: NavbarProps) {
 
   return (
     <>
-      {/* 1. TOP ANNOUNCEMENT BAR (Scrolling Marquee) */}
-      <div className="bg-blue-600 text-white py-1.5 overflow-hidden border-b border-blue-700 text-[11px] font-mono select-none relative z-50 w-full">
-        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-4 xl:px-4 2xl:px-8 flex items-center relative">
-          <span className="bg-yellow-400 text-blue-950 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded mr-3 shrink-0 relative z-10 shadow-sm animate-pulse">
-            Announcements
-          </span>
-          <div className="w-full overflow-hidden flex whitespace-nowrap group">
-            <div className="animate-marquee flex gap-16 uppercase font-semibold shrink-0">
-              <span>🎉 Admissions Open for Academic Year 2026-27</span>
-              <span>🏆 NAAC Accredited with A+ Grade</span>
-              <span>🎓 Autonomous Institution (UGC Proposal)</span>
-              <span>📢 Latest JNTUA Circulars Released</span>
-              <span>📅 Academic Calendars Active</span>
-              <span>💼 Corporate Placements: 96.4% Secured</span>
+      {/* 1. TOP ANNOUNCEMENT BAR (Live Notification Marquee) */}
+      <div className="bg-gradient-to-r from-blue-950 via-slate-900 to-blue-950 text-white py-1.5 sm:py-2 overflow-hidden border-b-2 border-amber-400/80 text-xs font-sans select-none relative z-50 w-full shadow-md">
+        <div className="w-full max-w-[1600px] mx-auto px-3 sm:px-6 flex items-center relative gap-2 sm:gap-3">
+          
+          {/* Badge & Live Pulse Indicator (Sticky / Highlighted on Left) */}
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 relative z-20 bg-slate-900/90 py-0.5 pr-2.5 rounded-full border border-blue-700/60 shadow-md">
+            {/* Live Pulsing Indicator Dot */}
+            <div className="inline-flex items-center gap-1.5 pl-2">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]"></span>
+              </span>
+              <span className="text-[10px] font-black tracking-wider text-red-400 uppercase font-mono hidden sm:inline">
+                LIVE
+              </span>
             </div>
-            {/* Duplicate for infinite loop */}
-            <div className="animate-marquee flex gap-16 uppercase ml-16 font-semibold shrink-0" aria-hidden="true">
-              <span>🎉 Admissions Open for Academic Year 2026-27</span>
-              <span>🏆 NAAC Accredited with A+ Grade</span>
-              <span>🎓 Autonomous Institution (UGC Proposal)</span>
-              <span>📢 Latest JNTUA Circulars Released</span>
-              <span>📅 Academic Calendars Active</span>
-              <span>💼 Corporate Placements: 96.4% Secured</span>
-            </div>
+
+            {/* ANNOUNCEMENTS Badge Pill */}
+            <span className="bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-400 text-slate-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow-xs tracking-wider border border-amber-300 flex items-center gap-1">
+              📢 ANNOUNCEMENTS
+            </span>
           </div>
+
+          {/* Scrolling Marquee / Ticker Container (Pauses on Hover) */}
+          <div className="w-full overflow-hidden flex whitespace-nowrap group relative items-center">
+            
+            {/* Left & Right subtle gradient fade edges for smooth marquee clipping */}
+            <div className="absolute top-0 bottom-0 left-0 w-4 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 bottom-0 right-0 w-6 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
+
+            <div className="animate-marquee flex items-center gap-8 sm:gap-12 font-medium tracking-wide shrink-0">
+              
+              {/* Item 1: Admissions */}
+              <Link to="/admissions" className="inline-flex items-center gap-2 bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-amber-200 px-3 py-0.5 rounded-full font-bold text-xs transition-colors cursor-pointer">
+                <span className="text-amber-400">🎓</span>
+                <span>ADMISSIONS OPEN FOR ACADEMIC YEAR 2026–27</span>
+                <span className="bg-amber-400 text-amber-950 text-[9px] font-black px-1.5 py-0.2 rounded uppercase tracking-wider">APPLY NOW</span>
+              </Link>
+
+              <span className="text-amber-400/60 text-xs">◆</span>
+
+              {/* Item 2: Placements */}
+              <Link to="/placements/company-visits" className="inline-flex items-center gap-2 bg-blue-500/15 hover:bg-blue-500/25 border border-blue-400/40 text-blue-100 px-3 py-0.5 rounded-full font-bold text-xs transition-colors cursor-pointer">
+                <span className="text-yellow-400">🏆</span>
+                <span>CORPORATE PLACEMENTS:</span>
+                <span className="text-amber-300 font-extrabold text-xs underline decoration-amber-400/60 underline-offset-2">96.4% SECURED</span>
+              </Link>
+
+              <span className="text-amber-400/60 text-xs">◆</span>
+
+              {/* Item 3: NAAC */}
+              <div className="inline-flex items-center gap-2 text-slate-100 text-xs">
+                <span className="text-amber-400">✨</span>
+                <span className="font-semibold">NAAC ACCREDITED WITH</span>
+                <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 text-[10px] font-extrabold px-2 py-0.5 rounded-md">A+ GRADE MARK</span>
+              </div>
+
+              <span className="text-amber-400/60 text-xs">◆</span>
+
+              {/* Item 4: Autonomous */}
+              <div className="inline-flex items-center gap-2 text-slate-100 font-semibold text-xs">
+                <span className="text-blue-400">🏛️</span>
+                <span>AUTONOMOUS INSTITUTION</span>
+                <span className="text-slate-400 text-[10px]">(UGC GOVT. PROPOSAL)</span>
+              </div>
+
+              <span className="text-amber-400/60 text-xs">◆</span>
+
+              {/* Item 5: JNTUA Circulars */}
+              <div className="inline-flex items-center gap-2 text-slate-100 font-semibold text-xs">
+                <span className="text-amber-400">📜</span>
+                <span>LATEST JNTUA CIRCULARS RELEASED</span>
+              </div>
+
+              <span className="text-amber-400/60 text-xs">◆</span>
+
+              {/* Item 6: Academic Calendar */}
+              <Link to="/academics" className="inline-flex items-center gap-2 text-slate-100 hover:text-amber-300 font-semibold text-xs transition-colors cursor-pointer">
+                <span className="text-sky-400">📅</span>
+                <span>ACADEMIC CALENDARS ACTIVE (2025-26)</span>
+              </Link>
+
+              <span className="text-amber-400/60 text-xs">◆</span>
+
+            </div>
+
+            {/* Duplicate Item Block for Seamless Infinite Loop */}
+            <div className="animate-marquee flex items-center gap-8 sm:gap-12 font-medium tracking-wide shrink-0 ml-8 sm:ml-12" aria-hidden="true">
+              
+              {/* Item 1: Admissions */}
+              <Link to="/admissions" className="inline-flex items-center gap-2 bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-amber-200 px-3 py-0.5 rounded-full font-bold text-xs transition-colors cursor-pointer">
+                <span className="text-amber-400">🎓</span>
+                <span>ADMISSIONS OPEN FOR ACADEMIC YEAR 2026–27</span>
+                <span className="bg-amber-400 text-amber-950 text-[9px] font-black px-1.5 py-0.2 rounded uppercase tracking-wider">APPLY NOW</span>
+              </Link>
+
+              <span className="text-amber-400/60 text-xs">◆</span>
+
+              {/* Item 2: Placements */}
+              <Link to="/placements/company-visits" className="inline-flex items-center gap-2 bg-blue-500/15 hover:bg-blue-500/25 border border-blue-400/40 text-blue-100 px-3 py-0.5 rounded-full font-bold text-xs transition-colors cursor-pointer">
+                <span className="text-yellow-400">🏆</span>
+                <span>CORPORATE PLACEMENTS:</span>
+                <span className="text-amber-300 font-extrabold text-xs underline decoration-amber-400/60 underline-offset-2">96.4% SECURED</span>
+              </Link>
+
+              <span className="text-amber-400/60 text-xs">◆</span>
+
+              {/* Item 3: NAAC */}
+              <div className="inline-flex items-center gap-2 text-slate-100 text-xs">
+                <span className="text-amber-400">✨</span>
+                <span className="font-semibold">NAAC ACCREDITED WITH</span>
+                <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 text-[10px] font-extrabold px-2 py-0.5 rounded-md">A+ GRADE MARK</span>
+              </div>
+
+              <span className="text-amber-400/60 text-xs">◆</span>
+
+              {/* Item 4: Autonomous */}
+              <div className="inline-flex items-center gap-2 text-slate-100 font-semibold text-xs">
+                <span className="text-blue-400">🏛️</span>
+                <span>AUTONOMOUS INSTITUTION</span>
+                <span className="text-slate-400 text-[10px]">(UGC GOVT. PROPOSAL)</span>
+              </div>
+
+              <span className="text-amber-400/60 text-xs">◆</span>
+
+              {/* Item 5: JNTUA Circulars */}
+              <div className="inline-flex items-center gap-2 text-slate-100 font-semibold text-xs">
+                <span className="text-amber-400">📜</span>
+                <span>LATEST JNTUA CIRCULARS RELEASED</span>
+              </div>
+
+              <span className="text-amber-400/60 text-xs">◆</span>
+
+              {/* Item 6: Academic Calendar */}
+              <Link to="/academics" className="inline-flex items-center gap-2 text-slate-100 hover:text-amber-300 font-semibold text-xs transition-colors cursor-pointer">
+                <span className="text-sky-400">📅</span>
+                <span>ACADEMIC CALENDARS ACTIVE (2025-26)</span>
+              </Link>
+
+              <span className="text-amber-400/60 text-xs">◆</span>
+
+            </div>
+
+          </div>
+
         </div>
       </div>
 
@@ -259,13 +390,14 @@ export default function Navbar({}: NavbarProps) {
                     onMouseEnter={() => setActiveDropdown(item.label)}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
-                    <button
-                      className={`px-1 2xl:px-2 py-2 text-xs font-bold uppercase tracking-normal flex items-center gap-1 hover:text-blue-600 transition-colors cursor-pointer ${
+                    <Link
+                      to={item.href}
+                      className={`px-0.5 2xl:px-1.5 py-2 text-[11px] 2xl:text-xs font-bold uppercase tracking-normal flex items-center gap-0.5 2xl:gap-1 hover:text-blue-600 transition-colors cursor-pointer ${
                         isCurrentCategory ? 'text-blue-600 border-b-2 border-yellow-500 pb-1' : 'text-slate-700'
                       }`}
                     >
                       {item.label} <ChevronDown className="h-3 w-3 shrink-0" />
-                    </button>
+                    </Link>
 
                     {/* Dropdown Container */}
                     <AnimatePresence>
@@ -295,7 +427,7 @@ export default function Navbar({}: NavbarProps) {
               {/* Contact */}
               <Link
                 to="/contact"
-                className={`px-1 2xl:px-2 py-2 text-xs font-bold uppercase tracking-normal transition-colors hover:text-blue-600 ${
+                className={`px-0.5 2xl:px-1.5 py-2 text-[11px] 2xl:text-xs font-bold uppercase tracking-normal transition-colors hover:text-blue-600 ${
                   location.pathname === '/contact' ? 'text-blue-600 border-b-2 border-yellow-500 pb-1' : 'text-slate-700'
                 }`}
               >
@@ -354,7 +486,8 @@ export default function Navbar({}: NavbarProps) {
                 <div className="max-w-3xl mx-auto mt-3 p-3 bg-slate-50 dark:bg-primary-900 rounded-xl border border-slate-200 dark:border-slate-800">
                   <span className="text-[10px] text-slate-400 font-mono">Real-time matching pages:</span>
                   <div className="mt-2 space-y-1">
-                    <Link to="/about" onClick={() => setSearchOpen(false)} className="block text-xs p-1.5 hover:bg-slate-100 dark:hover:bg-white/5 rounded text-primary-750 dark:text-gold-400">About RCEW Profile</Link>
+                    <Link to="/iqac" onClick={() => setSearchOpen(false)} className="block text-xs p-1.5 hover:bg-slate-100 dark:hover:bg-white/5 rounded text-primary-750 dark:text-gold-400">IQAC & NAAC Cell</Link>
+                    <Link to="/rd" onClick={() => setSearchOpen(false)} className="block text-xs p-1.5 hover:bg-slate-100 dark:hover:bg-white/5 rounded text-primary-750 dark:text-gold-400">Research & Development (R&D)</Link>
                     <Link to="/departments/cse" onClick={() => setSearchOpen(false)} className="block text-xs p-1.5 hover:bg-slate-100 dark:hover:bg-white/5 rounded text-primary-750 dark:text-gold-400">Computer Science & Engineering</Link>
                     <Link to="/admissions" onClick={() => setSearchOpen(false)} className="block text-xs p-1.5 hover:bg-slate-100 dark:hover:bg-white/5 rounded text-primary-750 dark:text-gold-400">Admissions Fees & Eligibility</Link>
                   </div>

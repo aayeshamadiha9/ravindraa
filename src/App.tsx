@@ -18,6 +18,7 @@ import Academics from './pages/Academics';
 import CSE from './pages/CSE';
 import ECE from './pages/ECE';
 import AIDS from './pages/AIDS';
+import Freshman from './pages/Freshman';
 import Admissions from './pages/Admissions';
 import Placements from './pages/Placements';
 import IQAC from './pages/IQAC';
@@ -116,6 +117,8 @@ function MainAppLayout({ darkMode, setDarkMode }: { darkMode: boolean; setDarkMo
               <Route path="/know-us/rankings-awards" element={<RankingsAwards />} />
               <Route path="/know-us/governing-body" element={<GoverningBody />} />
               <Route path="/academics" element={<Academics />} />
+              <Route path="/departments/freshman" element={<Freshman />} />
+              <Route path="/departments/hs" element={<Freshman />} />
               <Route path="/departments/cse" element={<CSE />} />
               <Route path="/departments/ece" element={<ECE />} />
               <Route path="/departments/ai-ds" element={<AIDS />} />

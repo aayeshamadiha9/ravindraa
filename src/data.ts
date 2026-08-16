@@ -60,6 +60,22 @@ export const STATS = [
 
 export const DEPARTMENTS: Department[] = [
   {
+    id: 'freshman',
+    name: 'FRESHMAN (I B.Tech)',
+    code: 'FRESHMAN',
+    shortDesc: 'Foundational engineering sciences, mathematics, physics, chemistry, and communicative English for first-year B.Tech students.',
+    fullDesc: 'FRESHMAN (I B.Tech) is the cornerstone of engineering education at Ravindra College of Engineering for Women. Dedicated to building strong analytical and scientific foundations, the department integrates Humanities, Basic Sciences (Mathematics, Physics, Chemistry), and fundamental engineering skill sets. Led by experienced faculty, the department ensures a smooth transition into specialized engineering streams with hands-on laboratories and holistic mentoring.',
+    intake: 360,
+    duration: '1 Year (I B.Tech Foundational)',
+    established: 2008,
+    labs: ['Engineering Physics Lab', 'Engineering Chemistry Lab', 'Communicative English & Language Lab', 'Programming for Problem Solving Lab', 'Engineering Graphics Studio'],
+    careers: ['Core Engineering Foundation', 'Advanced Computing Readiness', 'Hardware & Embedded Foundations', 'Scientific Research & Development'],
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
+    hodName: 'Mrs. G. Spandana',
+    hodDesignation: 'Associate Professor & HoD',
+    hodQualification: 'M.A., M.Phil., (Ph.D.) in English'
+  },
+  {
     id: 'cse',
     name: 'Computer Science and Engineering',
     code: 'CSE',

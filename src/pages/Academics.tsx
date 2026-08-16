@@ -9,9 +9,10 @@ import WORKSHOP_IMG from '../assets/images/rcew_academic_workshop_1785860399511.
 
 export default function Academics() {
   const btechCourses = [
-    { sNo: 1, name: 'Computer Science and Engineering', intake: 360, inception: 2008 },
-    { sNo: 2, name: 'Electronics and Communications Engineering', intake: 180, inception: 2008 },
-    { sNo: 3, name: 'Computer Science and Engineering(Artificial Intelligence)', intake: 180, inception: 2025 },
+    { sNo: 1, name: 'FRESHMAN (I B.Tech)', intake: 360, inception: 2008 },
+    { sNo: 2, name: 'Computer Science and Engineering', intake: 360, inception: 2008 },
+    { sNo: 3, name: 'Electronics and Communications Engineering', intake: 180, inception: 2008 },
+    { sNo: 4, name: 'Computer Science and Engineering (AI)', intake: 180, inception: 2025 },
   ];
 
   const mtechCourses = [

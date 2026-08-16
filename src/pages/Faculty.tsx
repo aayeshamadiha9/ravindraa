@@ -19,6 +19,39 @@ interface DepartmentData {
 
 const FACULTY_DATA: DepartmentData[] = [
   {
+    id: 'freshman',
+    title: 'FRESHMAN (I B.Tech)',
+    code: 'FRESHMAN (I B.Tech)',
+    description: 'FRESHMAN (I B.Tech) Faculty Roster',
+    faculty: [
+      { sNo: 1, name: 'Mrs. G. SPANDANA', designation: 'Associate Professor & HoD' },
+      { sNo: 2, name: 'Dr. G. RAMACHANDRA REDDY', designation: 'Professor' },
+      { sNo: 3, name: 'Dr. B. V. RAMI REDDY', designation: 'Professor' },
+      { sNo: 4, name: 'Dr. K. MALLIKARJUNUDU', designation: 'Professor' },
+      { sNo: 5, name: 'Dr. K. MADHURIMA', designation: 'Associate Professor' },
+      { sNo: 6, name: 'Mr. P. RIYAZ', designation: 'Assistant Professor' },
+      { sNo: 7, name: 'Mrs. DEENA GRACE ABIGAEL', designation: 'Assistant Professor' },
+      { sNo: 8, name: 'Mr. M. SREENIVASA REDDY', designation: 'Assistant Professor' },
+      { sNo: 9, name: 'Ms. SEKHAR PRANITHA', designation: 'Assistant Professor' },
+      { sNo: 10, name: 'Mrs. B. VIJETHA', designation: 'Assistant Professor' },
+      { sNo: 11, name: 'Mr. B. JAGADEESWARA REDDY', designation: 'Assistant Professor' },
+      { sNo: 12, name: 'Ms. B. ARUNA', designation: 'Assistant Professor' },
+      { sNo: 13, name: 'Mrs. K. NAGA GOWRI', designation: 'Assistant Professor' },
+      { sNo: 14, name: 'Ms. S. YOUSUF SHAREEF', designation: 'Assistant Professor' },
+      { sNo: 15, name: 'Mrs. K. NAGESWARI', designation: 'Assistant Professor' },
+      { sNo: 16, name: 'Mrs. P. J. M. SUMALATHA', designation: 'Assistant Professor' },
+      { sNo: 17, name: 'Mrs. D. HARITHA', designation: 'Assistant Professor' },
+      { sNo: 18, name: 'Ms. E. NIKHITHA', designation: 'Assistant Professor' },
+      { sNo: 19, name: 'Mrs. S. RASHIDA BEGUM', designation: 'Assistant Professor' },
+      { sNo: 20, name: 'Mrs. D. BINDU MADHAVI', designation: 'Assistant Professor' },
+      { sNo: 21, name: 'Mrs. N. RAHAMATHUNNISA', designation: 'Assistant Professor' },
+      { sNo: 22, name: 'Ms. G. HARSHITHA', designation: 'Assistant Professor' },
+      { sNo: 23, name: 'Mrs. B. SRILATHA', designation: 'Assistant Professor' },
+      { sNo: 24, name: 'Mr. S. BASHEER AHAMMED', designation: 'Assistant Professor' },
+      { sNo: 25, name: 'Mr. K. SURESH KUMAR', designation: 'Assistant Professor' }
+    ]
+  },
+  {
     id: 'btech-cse',
     title: 'B.Tech – Computer Science & Engineering',
     code: 'CSE',
@@ -26,10 +59,10 @@ const FACULTY_DATA: DepartmentData[] = [
     faculty: [
       { sNo: 1, name: 'Dr. K. SESHADRI RAMANA', designation: 'Professor & HoD' },
       { sNo: 2, name: 'Dr. B. NAGALAKSHMI', designation: 'Associate Professor' },
-      { sNo: 3, name: 'Mrs. Y. INDIRA PRIYADARSHINI (Ph.D)', designation: 'Assistant Professor' },
-      { sNo: 4, name: 'Mr. G. FAYAZ HUSSAIN (Ph.D)', designation: 'Assistant Professor' },
-      { sNo: 5, name: 'Mrs. KIRAN MAYEE (Ph.D)', designation: 'Assistant Professor' },
-      { sNo: 6, name: 'Mrs. PRATHIBHA PRIYADARSHNI (Ph.D)', designation: 'Assistant Professor' },
+      { sNo: 3, name: 'Mrs. Y. INDIRA PRIYADARSHINI', designation: 'Assistant Professor' },
+      { sNo: 4, name: 'Mr. G. FAYAZ HUSSAIN', designation: 'Assistant Professor' },
+      { sNo: 5, name: 'Mrs. KIRAN MAYEE', designation: 'Assistant Professor' },
+      { sNo: 6, name: 'Mrs. PRATHIBHA PRIYADARSHNI', designation: 'Assistant Professor' },
       { sNo: 7, name: 'Mrs. YASHODA', designation: 'Assistant Professor' },
       { sNo: 8, name: 'Mrs. J. USHA SRI', designation: 'Assistant Professor' },
       { sNo: 9, name: 'Mr. S. ASLAM SHAREEF', designation: 'Assistant Professor' },
@@ -83,16 +116,16 @@ const FACULTY_DATA: DepartmentData[] = [
     code: 'ECE',
     description: 'Undergraduate Department of Electronics & Communication Engineering Faculty Roster',
     faculty: [
-      { sNo: 1, name: 'Dr. N. Sreekanth (Ph.D)', designation: 'Professor & Principal' },
-      { sNo: 2, name: 'Dr. B. Madhusudhana Reddy (Ph.D)', designation: 'HOD & Professor' },
-      { sNo: 3, name: 'Dr. M. Jayalakshmi (Ph.D)', designation: 'Professor' },
-      { sNo: 4, name: 'Dr. P. Bindhu Swetha (Ph.D)', designation: 'Professor' },
-      { sNo: 5, name: 'Dr. Mohebbanaaz (Ph.D)', designation: 'Associate Professor' },
-      { sNo: 6, name: 'Mrs. C. Ahalya (Ph.D)', designation: 'Assistant Professor' },
-      { sNo: 7, name: 'Mrs. M. Jyothirmai (Ph.D)', designation: 'Assistant Professor' },
-      { sNo: 8, name: 'Mr. K. Venkata Siva Reddy (Ph.D)', designation: 'Assistant Professor' },
-      { sNo: 9, name: 'Mr. P. Kishor Kumar (Ph.D)', designation: 'Assistant Professor' },
-      { sNo: 10, name: 'Mrs. B. Geetha Rani (Ph.D)', designation: 'Assistant Professor' },
+      { sNo: 1, name: 'Dr. N. Sreekanth', designation: 'Professor & Principal' },
+      { sNo: 2, name: 'Dr. B. Madhusudhana Reddy', designation: 'HOD & Professor' },
+      { sNo: 3, name: 'Dr. M. Jayalakshmi', designation: 'Professor' },
+      { sNo: 4, name: 'Dr. P. Bindhu Swetha', designation: 'Professor' },
+      { sNo: 5, name: 'Dr. Mohebbanaaz', designation: 'Associate Professor' },
+      { sNo: 6, name: 'Mrs. C. Ahalya', designation: 'Assistant Professor' },
+      { sNo: 7, name: 'Mrs. M. Jyothirmai', designation: 'Assistant Professor' },
+      { sNo: 8, name: 'Mr. K. Venkata Siva Reddy', designation: 'Assistant Professor' },
+      { sNo: 9, name: 'Mr. P. Kishor Kumar', designation: 'Assistant Professor' },
+      { sNo: 10, name: 'Mrs. B. Geetha Rani', designation: 'Assistant Professor' },
       { sNo: 11, name: 'Mr. D. Gowri Sankar Rao', designation: 'Assistant Professor' },
       { sNo: 12, name: 'Ms. Syed Ishrath Moin', designation: 'Assistant Professor' }
     ]
@@ -104,7 +137,7 @@ const FACULTY_DATA: DepartmentData[] = [
     description: 'Postgraduate Master of Technology Faculty Roster',
     faculty: [
       { sNo: 1, name: 'Dr. B. SABEENA', designation: 'Associate Professor' },
-      { sNo: 2, name: 'Mrs. V. ROHINI (Ph.D)', designation: 'Assistant Professor' },
+      { sNo: 2, name: 'Mrs. V. ROHINI', designation: 'Assistant Professor' },
       { sNo: 3, name: 'Mr. DORA BABU', designation: 'Assistant Professor' }
     ]
   },
@@ -115,7 +148,7 @@ const FACULTY_DATA: DepartmentData[] = [
     description: 'Postgraduate Artificial Intelligence & Machine Learning Faculty Roster',
     faculty: [
       { sNo: 1, name: 'Dr. T. ADITYA SAI SRINIVAS', designation: 'Associate Professor' },
-      { sNo: 2, name: 'Mr. N. PARASHURAM (Ph.D)', designation: 'Assistant Professor' }
+      { sNo: 2, name: 'Mr. N. PARASHURAM', designation: 'Assistant Professor' }
     ]
   },
   {
@@ -227,7 +260,7 @@ export default function Faculty() {
                   <span className="text-[10px] text-blue-100 font-mono uppercase tracking-wider font-bold">Faculty Members</span>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md border border-white/20 p-3.5 rounded-2xl shadow-sm text-center">
-                  <span className="text-amber-300 font-serif font-bold text-xl sm:text-2xl block">5</span>
+                  <span className="text-amber-300 font-serif font-bold text-xl sm:text-2xl block">{FACULTY_DATA.length}</span>
                   <span className="text-[10px] text-blue-100 font-mono uppercase tracking-wider font-bold">Academic Streams</span>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md border border-white/20 p-3.5 rounded-2xl shadow-sm text-center">
