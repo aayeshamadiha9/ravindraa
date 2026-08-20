@@ -173,90 +173,7 @@ const OBE_DATA = {
   ]
 };
 
-// Complete Faculty Roster grouped by Programs
-interface FacultyMember {
-  sno: number;
-  name: string;
-  designation: string;
-  isPhD?: boolean;
-}
-
-const BTECH_FACULTY: FacultyMember[] = [
-  { sno: 1, name: 'Dr. K.SESHADRI RAMANA', designation: 'Professor & HoD', isPhD: true },
-  { sno: 2, name: 'Dr. B. NAGALAKSHMI', designation: 'Associate Professor', isPhD: true },
-  { sno: 3, name: 'Mrs. Y. INDIRA PRIYADARSHINI', designation: 'Assistant Professor', isPhD: true },
-  { sno: 4, name: 'Mr. G. FAYAZ HUSSAIN', designation: 'Assistant Professor', isPhD: true },
-  { sno: 5, name: 'Mrs. KIRAN MAYEE', designation: 'Assistant Professor', isPhD: true },
-  { sno: 6, name: 'Mrs. PRATHIBHA PRIYADARSHNI', designation: 'Assistant Professor', isPhD: true },
-  { sno: 7, name: 'Mrs. YASHODA', designation: 'Assistant Professor' },
-  { sno: 8, name: 'Mrs. J USHA SRI', designation: 'Assistant Professor' },
-  { sno: 9, name: 'Mr. S. ASLAM SHAREEF', designation: 'Assistant Professor' },
-  { sno: 10, name: 'Mrs. M. SAILAJA', designation: 'Assistant Professor' },
-  { sno: 11, name: 'Mrs. G. SHAHEEN FIRDOUS', designation: 'Assistant Professor' },
-  { sno: 12, name: 'Mrs. SAI REKHA', designation: 'Assistant Professor' },
-  { sno: 13, name: 'Mrs. SARITHA REDDY', designation: 'Assistant Professor' },
-  { sno: 14, name: 'Mrs. S. NUZHATHA PASHA', designation: 'Assistant Professor' },
-  { sno: 15, name: 'Mr. M. BALAKRISHNA', designation: 'Assistant Professor' },
-  { sno: 16, name: 'Mrs. SAMEENA YOUSUFF', designation: 'Assistant Professor' },
-  { sno: 17, name: 'Mrs. V LEENA PARIMALA', designation: 'Assistant Professor' },
-  { sno: 18, name: 'Mrs. SAMIYA', designation: 'Assistant Professor' },
-  { sno: 19, name: 'Mr. M. PRAVEEN KUMAR', designation: 'Assistant Professor' },
-  { sno: 20, name: 'Mrs. L. SANDYA REKHA', designation: 'Assistant Professor' },
-  { sno: 21, name: 'Mrs. K. LAKSHMI PRASANNA', designation: 'Assistant Professor' },
-  { sno: 22, name: 'Mrs. V. PREMA MANVI', designation: 'Assistant Professor' },
-  { sno: 23, name: 'Mrs. T. UMA DEVI', designation: 'Assistant Professor' },
-  { sno: 24, name: 'Mrs. A. JOY PRANAHITHA', designation: 'Assistant Professor' },
-  { sno: 25, name: 'Mrs. P. RAGA CHANDRIKA', designation: 'Assistant Professor' },
-  { sno: 26, name: 'Mrs. S. TABITA', designation: 'Assistant Professor' },
-  { sno: 27, name: 'Mrs. M. SHAHEDA BEGUM', designation: 'Assistant Professor' },
-  { sno: 28, name: 'Mrs. B. NAGA DIVYA', designation: 'Assistant Professor' },
-  { sno: 29, name: 'Ms. M. SHIVA THULASI', designation: 'Assistant Professor' },
-  { sno: 30, name: 'Mrs. E. K. MOUNIKA', designation: 'Assistant Professor' },
-  { sno: 31, name: 'Mrs. P RAGHAVARDHINI', designation: 'Assistant Professor' },
-  { sno: 32, name: 'Mrs. R. TEJASWI', designation: 'Assistant Professor' },
-  { sno: 33, name: 'Mrs. P. M. PRIYANKA', designation: 'Assistant Professor' },
-  { sno: 34, name: 'Mrs. G. SABERA', designation: 'Assistant Professor' },
-  { sno: 35, name: 'Mr. RAJA ASHOK KUMAR', designation: 'Assistant Professor' },
-  { sno: 36, name: 'Mr. G NATARAJA SEKHAR', designation: 'Assistant Professor' },
-  { sno: 37, name: 'Mrs. S. RUMANA FIRDOSE', designation: 'Assistant Professor' },
-  { sno: 38, name: 'Mrs. AYESHA IFFAT BASHEER', designation: 'Assistant Professor' },
-  { sno: 39, name: 'Ms. SUVARNAMMA', designation: 'Assistant Professor' },
-  { sno: 40, name: 'Mr. B. SAHADEVA REDDY', designation: 'Assistant Professor' },
-  { sno: 41, name: 'Mr. T. RAMAKRISHNA', designation: 'Assistant Professor' },
-  { sno: 42, name: 'Ms. K. SWATHI', designation: 'Assistant Professor' },
-  { sno: 43, name: 'Mr. K. NARAYANA', designation: 'Assistant Professor' },
-  { sno: 44, name: 'Ms. K. DIVYA', designation: 'Assistant Professor' },
-  { sno: 45, name: 'Mr. M. DINAKARA SANDEEP', designation: 'Assistant Professor' },
-  { sno: 46, name: 'Mrs. M. MADHU LATHA', designation: 'Assistant Professor' },
-  { sno: 47, name: 'Mr. S. MOHAMMED IMTIAZ ALI', designation: 'Assistant Professor' },
-  { sno: 48, name: 'Ms. T.B. SHIRISHA', designation: 'Assistant Professor' },
-  { sno: 49, name: 'Ms. S SHAISTHA FARHEE', designation: 'Assistant Professor' },
-  { sno: 50, name: 'Ms. V. B. RADHA', designation: 'Assistant Professor' },
-  { sno: 51, name: 'Mr. V.V.R. SHASHANK', designation: 'Assistant Professor' },
-];
-
-const MTECH_CSE_FACULTY: FacultyMember[] = [
-  { sno: 1, name: 'Dr. B. SABEENA', designation: 'Associate Professor', isPhD: true },
-  { sno: 2, name: 'Mrs V. ROHINI', designation: 'Assistant Professor', isPhD: true },
-  { sno: 3, name: 'Mr. DORA BABU', designation: 'Assistant Professor' },
-];
-
-const MTECH_AIML_FACULTY: FacultyMember[] = [
-  { sno: 1, name: 'Dr. T. ADITYA SAI SRINIVAS', designation: 'Associate Professor', isPhD: true },
-  { sno: 2, name: 'Mr. N. PARASHURAM', designation: 'Assistant Professor', isPhD: true },
-];
-
-const CAI_FACULTY: FacultyMember[] = [
-  { sno: 1, name: 'Ms. V. NEELIMA', designation: 'Assistant Professor' },
-  { sno: 2, name: 'Mr. RAVI BOLLEDDULA', designation: 'Assistant Professor' },
-  { sno: 3, name: 'Ms. N. SWATHI', designation: 'Assistant Professor' },
-  { sno: 4, name: 'Mrs. G. LUCY', designation: 'Assistant Professor' },
-  { sno: 5, name: 'Ms. A. SWETHA', designation: 'Assistant Professor' },
-  { sno: 6, name: 'Ms. P. SNIGDHASREE', designation: 'Assistant Professor' },
-  { sno: 7, name: 'Ms. P. CHANDANA REDDY', designation: 'Assistant Professor' },
-  { sno: 8, name: 'Ms. L. DEVASENA', designation: 'Assistant Professor' },
-  { sno: 9, name: 'Ms. SHAIK RESHMA', designation: 'Assistant Professor' },
-];
+import { CSE_FACULTY } from '../data/facultyData';
 
 export default function CSE() {
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -1033,152 +950,87 @@ export default function CSE() {
                 <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-4">
                   <button
                     onClick={() => setFacultyFilter('all')}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer ${
-                      facultyFilter === 'all'
-                        ? 'bg-blue-600 text-white shadow-xs'
-                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
+                    className="px-4 py-1.5 rounded-full text-xs font-mono font-bold transition-all bg-blue-600 text-white shadow-xs"
                   >
-                    All Faculty (65)
-                  </button>
-                  <button
-                    onClick={() => setFacultyFilter('btech')}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer ${
-                      facultyFilter === 'btech'
-                        ? 'bg-blue-600 text-white shadow-xs'
-                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
-                  >
-                    B.Tech CSE (51)
-                  </button>
-                  <button
-                    onClick={() => setFacultyFilter('mtech_cse')}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer ${
-                      facultyFilter === 'mtech_cse'
-                        ? 'bg-blue-600 text-white shadow-xs'
-                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
-                  >
-                    M.Tech CSE (3)
-                  </button>
-                  <button
-                    onClick={() => setFacultyFilter('mtech_aiml')}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer ${
-                      facultyFilter === 'mtech_aiml'
-                        ? 'bg-blue-600 text-white shadow-xs'
-                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
-                  >
-                    M.Tech AI & ML (2)
-                  </button>
-                  <button
-                    onClick={() => setFacultyFilter('cai')}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer ${
-                      facultyFilter === 'cai'
-                        ? 'bg-blue-600 text-white shadow-xs'
-                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
-                  >
-                    CAI (9)
+                    All Faculty ({CSE_FACULTY.length})
                   </button>
                 </div>
 
                 {/* Helper Table Renderer Function */}
                 {(() => {
-                  const filterList = (list: FacultyMember[]) => {
+                  const filterList = (list: typeof CSE_FACULTY) => {
                     if (!facultySearch.trim()) return list;
                     const query = facultySearch.toLowerCase();
                     return list.filter(f =>
                       f.name.toLowerCase().includes(query) ||
+                      f.qualification.toLowerCase().includes(query) ||
                       f.designation.toLowerCase().includes(query)
                     );
                   };
 
-                  const renderFacultyTable = (title: string, badgeText: string, members: FacultyMember[]) => {
-                    const filteredMembers = filterList(members);
-                    if (filteredMembers.length === 0) return null;
-
-                    return (
-                      <div className="space-y-4 pt-2">
-                        {/* Section Header Banner */}
-                        <div className="p-4 bg-gradient-to-r from-blue-50/80 via-indigo-50/40 to-slate-50 border-l-4 border-blue-600 rounded-r-2xl flex items-center justify-between shadow-xs">
-                          <div>
-                            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded border border-blue-200">
-                              {badgeText}
-                            </span>
-                            <h3 className="font-serif font-bold text-slate-900 text-base sm:text-lg mt-1">
-                              {title}
-                            </h3>
-                          </div>
-                          <span className="px-3 py-1 bg-white text-blue-900 font-mono font-bold text-xs rounded-full border border-blue-200 shadow-2xs">
-                            {filteredMembers.length} Members
-                          </span>
-                        </div>
-
-                        {/* Table */}
-                        <div className="overflow-x-auto border border-slate-200 rounded-2xl shadow-xs bg-white">
-                          <table className="w-full text-left text-xs sm:text-sm">
-                            <thead className="bg-slate-100 text-slate-800 font-serif font-bold uppercase text-[11px] border-b border-slate-200">
-                              <tr>
-                                <th className="py-3.5 px-4 w-16 text-center">SNO</th>
-                                <th className="py-3.5 px-4">Name of the Faculty</th>
-                                <th className="py-3.5 px-4 text-center">Designation</th>
-                              </tr>
-                            </thead>
-                            <tbody className="divide-y divide-slate-100 text-slate-700">
-                              {filteredMembers.map((fac) => {
-                                let badgeStyle = "bg-slate-100 text-slate-800 border-slate-200";
-                                if (fac.designation.includes('HoD') || fac.designation.includes('Professor &')) {
-                                  badgeStyle = "bg-amber-500 text-white font-bold shadow-2xs";
-                                } else if (fac.designation.includes('Associate Professor')) {
-                                  badgeStyle = "bg-blue-600 text-white font-bold shadow-2xs";
-                                } else if (fac.designation.includes('Assistant Professor')) {
-                                  badgeStyle = "bg-slate-100 text-slate-800 border border-slate-200 font-medium";
-                                }
-
-                                return (
-                                  <tr key={fac.sno} className="hover:bg-blue-50/40 transition-colors">
-                                    <td className="py-3 px-4 font-mono font-bold text-center text-blue-700">{fac.sno}</td>
-                                    <td className="py-3 px-4 font-bold text-slate-900 flex items-center gap-2">
-                                      <span>{fac.name}</span>
-                                      {fac.isPhD && (
-                                        <span className="px-2 py-0.5 bg-purple-100 text-purple-900 font-mono font-bold text-[10px] rounded-md border border-purple-200 shrink-0">
-                                          (Ph.D)
-                                        </span>
-                                      )}
-                                    </td>
-                                    <td className="py-3 px-4 text-center">
-                                      <span className={`px-3 py-1 rounded-full text-[11px] inline-block ${badgeStyle}`}>
-                                        {fac.designation}
-                                      </span>
-                                    </td>
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    );
-                  };
+                  const filteredMembers = filterList(CSE_FACULTY);
 
                   return (
-                    <div className="space-y-8">
-                      {(facultyFilter === 'all' || facultyFilter === 'btech') && (
-                        renderFacultyTable('B.Tech – Faculty Members', 'Undergraduate Program', BTECH_FACULTY)
-                      )}
+                    <div className="space-y-4 pt-2">
+                      {/* Section Header Banner */}
+                      <div className="p-4 bg-gradient-to-r from-blue-50/80 via-indigo-50/40 to-slate-50 border-l-4 border-blue-600 rounded-r-2xl flex items-center justify-between shadow-xs">
+                        <div>
+                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded border border-blue-200">
+                            Department Roster
+                          </span>
+                          <h3 className="font-serif font-bold text-slate-900 text-base sm:text-lg mt-1">
+                            DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING (ARTIFICIAL INTELLIGENCE)
+                          </h3>
+                        </div>
+                        <span className="px-3 py-1 bg-white text-blue-900 font-mono font-bold text-xs rounded-full border border-blue-200 shadow-2xs">
+                          {filteredMembers.length} Members
+                        </span>
+                      </div>
 
-                      {(facultyFilter === 'all' || facultyFilter === 'mtech_cse') && (
-                        renderFacultyTable('M.Tech – Faculty Members (CSE)', 'Postgraduate Program', MTECH_CSE_FACULTY)
-                      )}
+                      {/* Table */}
+                      <div className="overflow-x-auto border border-slate-200 rounded-2xl shadow-xs bg-white">
+                        <table className="w-full text-left text-xs sm:text-sm">
+                          <thead className="bg-slate-100 text-slate-800 font-serif font-bold uppercase text-[11px] border-b border-slate-200">
+                            <tr>
+                              <th className="py-3.5 px-4 w-16 text-center">S.No</th>
+                              <th className="py-3.5 px-4">Name of the Faculty</th>
+                              <th className="py-3.5 px-4 text-center">Qualification</th>
+                              <th className="py-3.5 px-4 text-center">Designation</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-slate-100 text-slate-700">
+                            {filteredMembers.map((fac) => {
+                              let badgeStyle = "bg-slate-100 text-slate-800 border-slate-200";
+                              if (fac.designation.includes('HoD') || fac.designation.includes('Principal')) {
+                                badgeStyle = "bg-amber-500 text-white font-bold shadow-2xs";
+                              } else if (fac.designation.includes('Assoc. Professor') || fac.designation.includes('Associate Professor')) {
+                                badgeStyle = "bg-blue-600 text-white font-bold shadow-2xs";
+                              } else if (fac.designation.includes('Asst., Professor') || fac.designation.includes('Assistant Professor')) {
+                                badgeStyle = "bg-slate-100 text-slate-800 border border-slate-200 font-medium";
+                              }
 
-                      {(facultyFilter === 'all' || facultyFilter === 'mtech_aiml') && (
-                        renderFacultyTable('M.Tech – Faculty Members (CSE- AI&ML)', 'Postgraduate Program', MTECH_AIML_FACULTY)
-                      )}
-
-                      {(facultyFilter === 'all' || facultyFilter === 'cai') && (
-                        renderFacultyTable('CAI – Faculty Members', 'Undergraduate Program (AI Specialization)', CAI_FACULTY)
-                      )}
+                              return (
+                                <tr key={fac.sno} className="hover:bg-blue-50/40 transition-colors">
+                                  <td className="py-3 px-4 font-mono font-bold text-center text-blue-700">{fac.sno}</td>
+                                  <td className="py-3 px-4 font-bold text-slate-900 flex items-center gap-2">
+                                    <span>{fac.name}</span>
+                                  </td>
+                                  <td className="py-3 px-4 text-center font-mono text-xs font-semibold text-purple-900">
+                                    <span className="px-2.5 py-1 bg-purple-50 rounded-md border border-purple-200 inline-block">
+                                      {fac.qualification}
+                                    </span>
+                                  </td>
+                                  <td className="py-3 px-4 text-center">
+                                    <span className={`px-3 py-1 rounded-full text-[11px] inline-block ${badgeStyle}`}>
+                                      {fac.designation}
+                                    </span>
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   );
                 })()}

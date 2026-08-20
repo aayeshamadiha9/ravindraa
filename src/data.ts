@@ -72,8 +72,8 @@ export const DEPARTMENTS: Department[] = [
     careers: ['Core Engineering Foundation', 'Advanced Computing Readiness', 'Hardware & Embedded Foundations', 'Scientific Research & Development'],
     image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
     hodName: 'Mrs. G. Spandana',
-    hodDesignation: 'Associate Professor & HoD',
-    hodQualification: 'M.A., M.Phil., (Ph.D.) in English'
+    hodDesignation: 'HoD',
+    hodQualification: '(Ph.D)'
   },
   {
     id: 'cse',
@@ -87,9 +87,9 @@ export const DEPARTMENTS: Department[] = [
     labs: ['Java Programming Lab', 'Advanced Data Structures Lab', 'Cloud Computing & IoT Lab', 'Mobile App Development Lab', 'Computer Networks Lab'],
     careers: ['Software Engineer', 'Full Stack Developer', 'Cloud Engineer', 'Cyber Security Analyst', 'Database Administrator'],
     image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800',
-    hodName: 'Dr. G. Ramesh',
-    hodDesignation: 'Professor & Head of Department',
-    hodQualification: 'M.Tech, Ph.D in Computer Science'
+    hodName: 'Dr. K Seshadri Ramana',
+    hodDesignation: 'HoD & Professor',
+    hodQualification: 'Ph.D'
   },
   {
     id: 'ece',
@@ -103,9 +103,9 @@ export const DEPARTMENTS: Department[] = [
     labs: ['VLSI & Embedded Systems Lab', 'Analog & Digital Communications Lab', 'Microprocessors & Microcontrollers Lab', 'Digital Signal Processing Lab', 'Microwave Engineering Lab'],
     careers: ['Embedded Systems Engineer', 'VLSI Design Engineer', 'Telecom Systems Architect', 'IoT Solutions Expert', 'Hardware Test Analyst'],
     image: ECE_DEPT_LAB,
-    hodName: 'Dr. J. Prasanna Kumar',
-    hodDesignation: 'Professor & Head of Department',
-    hodQualification: 'M.E., Ph.D. in Communication Systems'
+    hodName: 'Dr. B Madhusudhana Reddy',
+    hodDesignation: 'HoD & Professor',
+    hodQualification: 'Ph.D.'
   },
   {
     id: 'aids',

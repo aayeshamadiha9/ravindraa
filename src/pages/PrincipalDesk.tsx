@@ -31,16 +31,15 @@ export default function PrincipalDesk() {
             
             {/* Left Column: Principal Portrait Image & Quick Cards */}
             <div className="lg:col-span-5 space-y-5">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg border-4 border-slate-100 bg-slate-100 group">
+              <div className="relative rounded-3xl overflow-hidden shadow-lg border-4 border-slate-200 bg-slate-950 group max-w-md mx-auto">
                 <img
                   src={PRINCIPAL_SREEKANTH_IMG}
                   alt="Dr. N. Sreekanth - Principal, RCEW"
-                  className="w-full h-auto sm:h-[460px] object-cover object-top"
+                  className="w-full h-auto object-contain transition-transform duration-500 hover:scale-102"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 text-white text-center space-y-1">
-                  <h3 className="font-serif font-bold text-lg text-amber-300">Dr. N. SREEKANTH</h3>
-                  <p className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/90 via-slate-950/50 to-transparent p-4 text-white text-center space-y-0.5">
+                  <h3 className="font-serif font-bold text-base sm:text-lg text-amber-300">Dr. N. SREEKANTH</h3>
+                  <p className="text-[11px] font-mono font-bold text-slate-200 uppercase tracking-wider">
                     Principal & Academic Head • RCEW
                   </p>
                 </div>
@@ -80,7 +79,7 @@ export default function PrincipalDesk() {
                   Dr. N. SREEKANTH
                 </h2>
                 <p className="text-blue-800 font-semibold text-sm sm:text-base mt-1">
-                  M.E., Ph.D. • Principal, Ravindra College of Engineering for Women
+                  M.Tech., Ph.D • Principal, Ravindra College of Engineering for Women
                 </p>
               </div>
 

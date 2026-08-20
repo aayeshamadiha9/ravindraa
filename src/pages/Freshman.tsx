@@ -170,40 +170,10 @@ const OBE_DATA = {
   ]
 };
 
-// Official RECW Freshman Faculty Roster
-interface FacultyMember {
-  sno: number;
-  name: string;
-  designation: string;
-}
+import { HS_FACULTY } from '../data/facultyData';
 
-const FRESHMAN_FACULTY: FacultyMember[] = [
-  { sno: 1, name: 'Mrs. G. SPANDANA', designation: 'Associate Professor & HoD' },
-  { sno: 2, name: 'Dr. G. RAMACHANDRA REDDY', designation: 'Professor' },
-  { sno: 3, name: 'Dr. B. V. RAMI REDDY', designation: 'Professor' },
-  { sno: 4, name: 'Dr. K. MALLIKARJUNUDU', designation: 'Professor' },
-  { sno: 5, name: 'Dr. K. MADHURIMA', designation: 'Associate Professor' },
-  { sno: 6, name: 'Mr. P. RIYAZ', designation: 'Assistant Professor' },
-  { sno: 7, name: 'Mrs. DEENA GRACE ABIGAEL', designation: 'Assistant Professor' },
-  { sno: 8, name: 'Mr. M. SREENIVASA REDDY', designation: 'Assistant Professor' },
-  { sno: 9, name: 'Ms. SEKHAR PRANITHA', designation: 'Assistant Professor' },
-  { sno: 10, name: 'Mrs. B. VIJETHA', designation: 'Assistant Professor' },
-  { sno: 11, name: 'Mr. B. JAGADEESWARA REDDY', designation: 'Assistant Professor' },
-  { sno: 12, name: 'Ms. B. ARUNA', designation: 'Assistant Professor' },
-  { sno: 13, name: 'Mrs. K. NAGA GOWRI', designation: 'Assistant Professor' },
-  { sno: 14, name: 'Ms. S. YOUSUF SHAREEF', designation: 'Assistant Professor' },
-  { sno: 15, name: 'Mrs. K. NAGESWARI', designation: 'Assistant Professor' },
-  { sno: 16, name: 'Mrs. P. J. M. SUMALATHA', designation: 'Assistant Professor' },
-  { sno: 17, name: 'Mrs. D. HARITHA', designation: 'Assistant Professor' },
-  { sno: 18, name: 'Ms. E. NIKHITHA', designation: 'Assistant Professor' },
-  { sno: 19, name: 'Mrs. S. RASHIDA BEGUM', designation: 'Assistant Professor' },
-  { sno: 20, name: 'Mrs. D. BINDU MADHAVI', designation: 'Assistant Professor' },
-  { sno: 21, name: 'Mrs. N. RAHAMATHUNNISA', designation: 'Assistant Professor' },
-  { sno: 22, name: 'Ms. G. HARSHITHA', designation: 'Assistant Professor' },
-  { sno: 23, name: 'Mrs. B. SRILATHA', designation: 'Assistant Professor' },
-  { sno: 24, name: 'Mr. S. BASHEER AHAMMED', designation: 'Assistant Professor' },
-  { sno: 25, name: 'Mr. K. SURESH KUMAR', designation: 'Assistant Professor' }
-];
+// Official RECW Freshman Faculty Roster
+const FRESHMAN_FACULTY = HS_FACULTY;
 
 export default function Freshman() {
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -212,6 +182,7 @@ export default function Freshman() {
 
   const filteredFaculty = FRESHMAN_FACULTY.filter(f =>
     f.name.toLowerCase().includes(facultySearch.toLowerCase()) ||
+    f.qualification.toLowerCase().includes(facultySearch.toLowerCase()) ||
     f.designation.toLowerCase().includes(facultySearch.toLowerCase())
   );
 
@@ -653,6 +624,7 @@ export default function Freshman() {
                         <tr className="bg-blue-800 text-white font-serif font-bold uppercase text-[11px] border-b-2 border-amber-400">
                           <th scope="col" className="py-4 px-6 w-20 text-center">S.No</th>
                           <th scope="col" className="py-4 px-6">Faculty Name</th>
+                          <th scope="col" className="py-4 px-6">Qualification</th>
                           <th scope="col" className="py-4 px-6">Designation</th>
                         </tr>
                       </thead>
@@ -678,11 +650,17 @@ export default function Freshman() {
                               </div>
                             </td>
 
+                            <td className="py-3.5 px-6 font-mono text-xs font-semibold text-purple-900">
+                              <span className="px-2.5 py-1 bg-purple-50 rounded-md border border-purple-200 inline-block">
+                                {member.qualification}
+                              </span>
+                            </td>
+
                             <td className="py-3.5 px-6">
                               <span className={`inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium border ${
                                 member.designation.includes('HoD') || member.designation.includes('Professor')
                                   ? 'bg-amber-100 text-amber-950 border-amber-300 font-bold'
-                                  : member.designation.includes('Associate')
+                                  : member.designation.includes('Associate') || member.designation.includes('Assoc')
                                   ? 'bg-blue-100 text-blue-950 border-blue-200 font-semibold'
                                   : 'bg-slate-100 text-slate-800 border-slate-200 font-medium'
                               }`}>

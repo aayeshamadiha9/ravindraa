@@ -2,173 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, UserCheck, GraduationCap, Award, BookOpen, Filter, Sparkles } from 'lucide-react';
 import FACULTY_GROUP_IMAGE from '../assets/images/rcew_faculty_group_1785859150336.png';
-
-interface FacultyMember {
-  sNo: number;
-  name: string;
-  designation: string;
-}
-
-interface DepartmentData {
-  id: string;
-  title: string;
-  code: string;
-  description: string;
-  faculty: FacultyMember[];
-}
-
-const FACULTY_DATA: DepartmentData[] = [
-  {
-    id: 'freshman',
-    title: 'FRESHMAN (I B.Tech)',
-    code: 'FRESHMAN (I B.Tech)',
-    description: 'FRESHMAN (I B.Tech) Faculty Roster',
-    faculty: [
-      { sNo: 1, name: 'Mrs. G. SPANDANA', designation: 'Associate Professor & HoD' },
-      { sNo: 2, name: 'Dr. G. RAMACHANDRA REDDY', designation: 'Professor' },
-      { sNo: 3, name: 'Dr. B. V. RAMI REDDY', designation: 'Professor' },
-      { sNo: 4, name: 'Dr. K. MALLIKARJUNUDU', designation: 'Professor' },
-      { sNo: 5, name: 'Dr. K. MADHURIMA', designation: 'Associate Professor' },
-      { sNo: 6, name: 'Mr. P. RIYAZ', designation: 'Assistant Professor' },
-      { sNo: 7, name: 'Mrs. DEENA GRACE ABIGAEL', designation: 'Assistant Professor' },
-      { sNo: 8, name: 'Mr. M. SREENIVASA REDDY', designation: 'Assistant Professor' },
-      { sNo: 9, name: 'Ms. SEKHAR PRANITHA', designation: 'Assistant Professor' },
-      { sNo: 10, name: 'Mrs. B. VIJETHA', designation: 'Assistant Professor' },
-      { sNo: 11, name: 'Mr. B. JAGADEESWARA REDDY', designation: 'Assistant Professor' },
-      { sNo: 12, name: 'Ms. B. ARUNA', designation: 'Assistant Professor' },
-      { sNo: 13, name: 'Mrs. K. NAGA GOWRI', designation: 'Assistant Professor' },
-      { sNo: 14, name: 'Ms. S. YOUSUF SHAREEF', designation: 'Assistant Professor' },
-      { sNo: 15, name: 'Mrs. K. NAGESWARI', designation: 'Assistant Professor' },
-      { sNo: 16, name: 'Mrs. P. J. M. SUMALATHA', designation: 'Assistant Professor' },
-      { sNo: 17, name: 'Mrs. D. HARITHA', designation: 'Assistant Professor' },
-      { sNo: 18, name: 'Ms. E. NIKHITHA', designation: 'Assistant Professor' },
-      { sNo: 19, name: 'Mrs. S. RASHIDA BEGUM', designation: 'Assistant Professor' },
-      { sNo: 20, name: 'Mrs. D. BINDU MADHAVI', designation: 'Assistant Professor' },
-      { sNo: 21, name: 'Mrs. N. RAHAMATHUNNISA', designation: 'Assistant Professor' },
-      { sNo: 22, name: 'Ms. G. HARSHITHA', designation: 'Assistant Professor' },
-      { sNo: 23, name: 'Mrs. B. SRILATHA', designation: 'Assistant Professor' },
-      { sNo: 24, name: 'Mr. S. BASHEER AHAMMED', designation: 'Assistant Professor' },
-      { sNo: 25, name: 'Mr. K. SURESH KUMAR', designation: 'Assistant Professor' }
-    ]
-  },
-  {
-    id: 'btech-cse',
-    title: 'B.Tech – Computer Science & Engineering',
-    code: 'CSE',
-    description: 'Undergraduate Department of Computer Science & Engineering Faculty Roster',
-    faculty: [
-      { sNo: 1, name: 'Dr. K. SESHADRI RAMANA', designation: 'Professor & HoD' },
-      { sNo: 2, name: 'Dr. B. NAGALAKSHMI', designation: 'Associate Professor' },
-      { sNo: 3, name: 'Mrs. Y. INDIRA PRIYADARSHINI', designation: 'Assistant Professor' },
-      { sNo: 4, name: 'Mr. G. FAYAZ HUSSAIN', designation: 'Assistant Professor' },
-      { sNo: 5, name: 'Mrs. KIRAN MAYEE', designation: 'Assistant Professor' },
-      { sNo: 6, name: 'Mrs. PRATHIBHA PRIYADARSHNI', designation: 'Assistant Professor' },
-      { sNo: 7, name: 'Mrs. YASHODA', designation: 'Assistant Professor' },
-      { sNo: 8, name: 'Mrs. J. USHA SRI', designation: 'Assistant Professor' },
-      { sNo: 9, name: 'Mr. S. ASLAM SHAREEF', designation: 'Assistant Professor' },
-      { sNo: 10, name: 'Mrs. M. SAILAJA', designation: 'Assistant Professor' },
-      { sNo: 11, name: 'Mrs. G. SHAHEEN FIRDOUS', designation: 'Assistant Professor' },
-      { sNo: 12, name: 'Mrs. SAI REKHA', designation: 'Assistant Professor' },
-      { sNo: 13, name: 'Mrs. SARITHA REDDY', designation: 'Assistant Professor' },
-      { sNo: 14, name: 'Mrs. S. NUZHATHA PASHA', designation: 'Assistant Professor' },
-      { sNo: 15, name: 'Mr. M. BALAKRISHNA', designation: 'Assistant Professor' },
-      { sNo: 16, name: 'Mrs. SAMEENA YOUSUFF', designation: 'Assistant Professor' },
-      { sNo: 17, name: 'Mrs. V. LEENA PARIMALA', designation: 'Assistant Professor' },
-      { sNo: 18, name: 'Mrs. SAMIYA', designation: 'Assistant Professor' },
-      { sNo: 19, name: 'Mr. M. PRAVEEN KUMAR', designation: 'Assistant Professor' },
-      { sNo: 20, name: 'Mrs. L. SANDYA REKHA', designation: 'Assistant Professor' },
-      { sNo: 21, name: 'Mrs. K. LAKSHMI PRASANNA', designation: 'Assistant Professor' },
-      { sNo: 22, name: 'Mrs. V. PREMA MANVI', designation: 'Assistant Professor' },
-      { sNo: 23, name: 'Mrs. T. UMA DEVI', designation: 'Assistant Professor' },
-      { sNo: 24, name: 'Mrs. A. JOY PRANAHITHA', designation: 'Assistant Professor' },
-      { sNo: 25, name: 'Mrs. P. RAGA CHANDRIKA', designation: 'Assistant Professor' },
-      { sNo: 26, name: 'Mrs. S. TABITA', designation: 'Assistant Professor' },
-      { sNo: 27, name: 'Mrs. M. SHAHEDA BEGUM', designation: 'Assistant Professor' },
-      { sNo: 28, name: 'Mrs. B. NAGA DIVYA', designation: 'Assistant Professor' },
-      { sNo: 29, name: 'Ms. M. SHIVA THULASI', designation: 'Assistant Professor' },
-      { sNo: 30, name: 'Mrs. E. K. MOUNIKA', designation: 'Assistant Professor' },
-      { sNo: 31, name: 'Mrs. P. RAGHAVARDHINI', designation: 'Assistant Professor' },
-      { sNo: 32, name: 'Mrs. R. TEJASWI', designation: 'Assistant Professor' },
-      { sNo: 33, name: 'Mrs. P. M. PRIYANKA', designation: 'Assistant Professor' },
-      { sNo: 34, name: 'Mrs. G. SABERA', designation: 'Assistant Professor' },
-      { sNo: 35, name: 'Mr. RAJA ASHOK KUMAR', designation: 'Assistant Professor' },
-      { sNo: 36, name: 'Mr. G. NATARAJA SEKHAR', designation: 'Assistant Professor' },
-      { sNo: 37, name: 'Mrs. S. RUMANA FIRDOSE', designation: 'Assistant Professor' },
-      { sNo: 38, name: 'Mrs. AYESHA IFFAT BASHEER', designation: 'Assistant Professor' },
-      { sNo: 39, name: 'Ms. SUVARNAMMA', designation: 'Assistant Professor' },
-      { sNo: 40, name: 'Mr. B. SAHADEVA REDDY', designation: 'Assistant Professor' },
-      { sNo: 41, name: 'Mr. T. RAMAKRISHNA', designation: 'Assistant Professor' },
-      { sNo: 42, name: 'Ms. K. SWATHI', designation: 'Assistant Professor' },
-      { sNo: 43, name: 'Mr. K. NARAYANA', designation: 'Assistant Professor' },
-      { sNo: 44, name: 'Ms. K. DIVYA', designation: 'Assistant Professor' },
-      { sNo: 45, name: 'Mr. M. DINAKARA SANDEEP', designation: 'Assistant Professor' },
-      { sNo: 46, name: 'Mrs. M. MADHU LATHA', designation: 'Assistant Professor' },
-      { sNo: 47, name: 'Mr. S. MOHAMMED IMTIAZ ALI', designation: 'Assistant Professor' },
-      { sNo: 48, name: 'Ms. T. B. SHIRISHA', designation: 'Assistant Professor' },
-      { sNo: 49, name: 'Ms. S. SHAISTHA FARHEE', designation: 'Assistant Professor' },
-      { sNo: 50, name: 'Ms. V. B. RADHA', designation: 'Assistant Professor' },
-      { sNo: 51, name: 'Mr. V. V. R. SHASHANK', designation: 'Assistant Professor' }
-    ]
-  },
-  {
-    id: 'btech-ece',
-    title: 'B.Tech – Electronics & Communication Engineering',
-    code: 'ECE',
-    description: 'Undergraduate Department of Electronics & Communication Engineering Faculty Roster',
-    faculty: [
-      { sNo: 1, name: 'Dr. N. Sreekanth', designation: 'Professor & Principal' },
-      { sNo: 2, name: 'Dr. B. Madhusudhana Reddy', designation: 'HOD & Professor' },
-      { sNo: 3, name: 'Dr. M. Jayalakshmi', designation: 'Professor' },
-      { sNo: 4, name: 'Dr. P. Bindhu Swetha', designation: 'Professor' },
-      { sNo: 5, name: 'Dr. Mohebbanaaz', designation: 'Associate Professor' },
-      { sNo: 6, name: 'Mrs. C. Ahalya', designation: 'Assistant Professor' },
-      { sNo: 7, name: 'Mrs. M. Jyothirmai', designation: 'Assistant Professor' },
-      { sNo: 8, name: 'Mr. K. Venkata Siva Reddy', designation: 'Assistant Professor' },
-      { sNo: 9, name: 'Mr. P. Kishor Kumar', designation: 'Assistant Professor' },
-      { sNo: 10, name: 'Mrs. B. Geetha Rani', designation: 'Assistant Professor' },
-      { sNo: 11, name: 'Mr. D. Gowri Sankar Rao', designation: 'Assistant Professor' },
-      { sNo: 12, name: 'Ms. Syed Ishrath Moin', designation: 'Assistant Professor' }
-    ]
-  },
-  {
-    id: 'mtech-cse',
-    title: 'M.Tech – Computer Science & Engineering',
-    code: 'M.Tech CSE',
-    description: 'Postgraduate Master of Technology Faculty Roster',
-    faculty: [
-      { sNo: 1, name: 'Dr. B. SABEENA', designation: 'Associate Professor' },
-      { sNo: 2, name: 'Mrs. V. ROHINI', designation: 'Assistant Professor' },
-      { sNo: 3, name: 'Mr. DORA BABU', designation: 'Assistant Professor' }
-    ]
-  },
-  {
-    id: 'mtech-aiml',
-    title: 'M.Tech – AI & Machine Learning',
-    code: 'M.Tech AIML',
-    description: 'Postgraduate Artificial Intelligence & Machine Learning Faculty Roster',
-    faculty: [
-      { sNo: 1, name: 'Dr. T. ADITYA SAI SRINIVAS', designation: 'Associate Professor' },
-      { sNo: 2, name: 'Mr. N. PARASHURAM', designation: 'Assistant Professor' }
-    ]
-  },
-  {
-    id: 'cai',
-    title: 'CAI',
-    code: 'CAI',
-    description: 'Computer Science & Allied Innovation Faculty Roster',
-    faculty: [
-      { sNo: 1, name: 'Ms. V. NEELIMA', designation: 'Assistant Professor' },
-      { sNo: 2, name: 'Mr. RAVI BOLLEDDULA', designation: 'Assistant Professor' },
-      { sNo: 3, name: 'Ms. N. SWATHI', designation: 'Assistant Professor' },
-      { sNo: 4, name: 'Mrs. G. LUCY', designation: 'Assistant Professor' },
-      { sNo: 5, name: 'Ms. A. SWETHA', designation: 'Assistant Professor' },
-      { sNo: 6, name: 'Ms. P. SNIGDHASREE', designation: 'Assistant Professor' },
-      { sNo: 7, name: 'Ms. P. CHANDANA REDDY', designation: 'Assistant Professor' },
-      { sNo: 8, name: 'Ms. L. DEVASENA', designation: 'Assistant Professor' },
-      { sNo: 9, name: 'Ms. SHAIK RESHMA', designation: 'Assistant Professor' }
-    ]
-  }
-];
+import { FACULTY_DATA } from '../data/facultyData';
 
 export default function Faculty() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -419,6 +253,7 @@ export default function Faculty() {
                         <tr className="bg-blue-800 text-white font-serif font-bold uppercase text-[11px] border-b-2 border-amber-400">
                           <th scope="col" className="py-4 px-6 w-20 text-center">S.No</th>
                           <th scope="col" className="py-4 px-6">Faculty Name</th>
+                          <th scope="col" className="py-4 px-6">Qualification</th>
                           <th scope="col" className="py-4 px-6">Designation</th>
                         </tr>
                       </thead>
@@ -427,7 +262,7 @@ export default function Faculty() {
                       <tbody className="divide-y divide-slate-100 text-xs sm:text-sm text-slate-800">
                         {dept.faculty.map((member, index) => (
                           <tr
-                            key={member.sNo}
+                            key={member.sno}
                             className={`transition-colors hover:bg-blue-50/40 ${
                               index % 2 === 0
                                 ? 'bg-white'
@@ -435,7 +270,7 @@ export default function Faculty() {
                             }`}
                           >
                             <td className="py-3.5 px-6 font-mono font-bold text-center text-blue-800">
-                              {member.sNo}
+                              {member.sno}
                             </td>
 
                             <td className="py-3.5 px-6 font-semibold text-slate-950">
@@ -445,6 +280,12 @@ export default function Faculty() {
                                 </div>
                                 <span>{member.name}</span>
                               </div>
+                            </td>
+
+                            <td className="py-3.5 px-6">
+                              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono font-semibold bg-purple-50 text-purple-900 border border-purple-200">
+                                {member.qualification}
+                              </span>
                             </td>
 
                             <td className="py-3.5 px-6">

@@ -76,86 +76,10 @@ const ECE_BOS_MEMBERS = [
   }
 ];
 
-// Faculty Members - ECE Roster (No Face Images)
-interface FacultyMember {
-  sno: number;
-  name: string;
-  designation: string;
-  isPhD?: boolean;
-}
+import { ECE_FACULTY } from '../data/facultyData';
 
-const ECE_FACULTY_ROSTER: FacultyMember[] = [
-  {
-    sno: 1,
-    name: 'Dr. N. Sreekanth',
-    designation: 'Professor & Principal',
-    isPhD: true
-  },
-  {
-    sno: 2,
-    name: 'Dr. B. Madhusudhana Reddy',
-    designation: 'HOD & Professor',
-    isPhD: true
-  },
-  {
-    sno: 3,
-    name: 'Dr. M. Jayalakshmi',
-    designation: 'Professor',
-    isPhD: true
-  },
-  {
-    sno: 4,
-    name: 'Dr. P. Bindhu Swetha',
-    designation: 'Professor',
-    isPhD: true
-  },
-  {
-    sno: 5,
-    name: 'Dr. Mohebbanaaz',
-    designation: 'Associate Professor',
-    isPhD: true
-  },
-  {
-    sno: 6,
-    name: 'Mrs. C. Ahalya',
-    designation: 'Assistant Professor',
-    isPhD: true
-  },
-  {
-    sno: 7,
-    name: 'Mrs. M. Jyothirmai',
-    designation: 'Assistant Professor',
-    isPhD: true
-  },
-  {
-    sno: 8,
-    name: 'Mr. K. Venkata Siva Reddy',
-    designation: 'Assistant Professor',
-    isPhD: true
-  },
-  {
-    sno: 9,
-    name: 'Mr. P. Kishor Kumar',
-    designation: 'Assistant Professor',
-    isPhD: true
-  },
-  {
-    sno: 10,
-    name: 'Mrs. B. Geetha Rani',
-    designation: 'Assistant Professor',
-    isPhD: true
-  },
-  {
-    sno: 11,
-    name: 'Mr. D. Gowri Sankar Rao',
-    designation: 'Assistant Professor'
-  },
-  {
-    sno: 12,
-    name: 'Ms. Syed Ishrath Moin',
-    designation: 'Assistant Professor'
-  }
-];
+// Faculty Members - ECE Roster (No Face Images)
+const ECE_FACULTY_ROSTER = ECE_FACULTY;
 
 // ECE Software Stack & Equipment List
 const ECE_SOFTWARE_STACK = [
@@ -643,6 +567,7 @@ export default function ECE() {
                       <tr>
                         <th className="py-3.5 px-4 w-16 text-center">SNO</th>
                         <th className="py-3.5 px-4">Name of the Faculty</th>
+                        <th className="py-3.5 px-4 text-center">Qualification</th>
                         <th className="py-3.5 px-4 text-center">Designation</th>
                       </tr>
                     </thead>
@@ -650,16 +575,17 @@ export default function ECE() {
                       {ECE_FACULTY_ROSTER.filter(f =>
                         !facultySearch ||
                         f.name.toLowerCase().includes(facultySearch.toLowerCase()) ||
+                        f.qualification.toLowerCase().includes(facultySearch.toLowerCase()) ||
                         f.designation.toLowerCase().includes(facultySearch.toLowerCase())
                       ).map((fac) => {
                         let badgeStyle = "bg-slate-100 text-slate-800 border-slate-200";
-                        if (fac.designation.includes('Principal') || fac.designation.includes('HOD')) {
+                        if (fac.designation.includes('Principal') || fac.designation.includes('HOD') || fac.designation.includes('HoD')) {
                           badgeStyle = "bg-blue-700 text-white font-bold shadow-2xs";
                         } else if (fac.designation === 'Professor') {
                           badgeStyle = "bg-blue-600 text-white font-bold shadow-2xs";
-                        } else if (fac.designation.includes('Associate Professor')) {
+                        } else if (fac.designation.includes('Associate') || fac.designation.includes('Assoc')) {
                           badgeStyle = "bg-blue-100 text-blue-900 border border-blue-300 font-bold";
-                        } else if (fac.designation.includes('Assistant Professor')) {
+                        } else if (fac.designation.includes('Assistant') || fac.designation.includes('Asst')) {
                           badgeStyle = "bg-slate-100 text-slate-800 border border-slate-200 font-medium";
                         }
 
@@ -667,14 +593,12 @@ export default function ECE() {
                           <tr key={fac.sno} className="hover:bg-blue-50/40 transition-colors">
                             <td className="py-3.5 px-4 font-mono font-bold text-center text-blue-600">{fac.sno}</td>
                             <td className="py-3.5 px-4 font-bold text-slate-900">
-                              <div className="flex items-center gap-2">
-                                <span>{fac.name}</span>
-                                {fac.isPhD && (
-                                  <span className="px-2 py-0.5 bg-blue-50 text-blue-800 font-mono font-bold text-[10px] rounded-md border border-blue-200 shrink-0">
-                                    (Ph.D)
-                                  </span>
-                                )}
-                              </div>
+                              <span>{fac.name}</span>
+                            </td>
+                            <td className="py-3.5 px-4 text-center font-mono text-xs font-semibold text-purple-900">
+                              <span className="px-2.5 py-1 bg-purple-50 rounded-md border border-purple-200 inline-block">
+                                {fac.qualification}
+                              </span>
                             </td>
                             <td className="py-3.5 px-4 text-center whitespace-nowrap">
                               <span className={`px-3 py-1 rounded-full text-[11px] inline-block ${badgeStyle}`}>

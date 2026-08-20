@@ -171,25 +171,10 @@ const OBE_DATA_CAI = {
   ]
 };
 
-// Faculty Roster for CAI Department
-interface FacultyMember {
-  sno: number;
-  name: string;
-  designation: string;
-  isPhD?: boolean;
-}
+import { CSE_FACULTY } from '../data/facultyData';
 
-const CAI_FACULTY_ROSTER: FacultyMember[] = [
-  { sno: 1, name: 'Ms. V. NEELIMA', designation: 'Assistant Professor' },
-  { sno: 2, name: 'Mr. RAVI BOLLEDDULA', designation: 'Assistant Professor' },
-  { sno: 3, name: 'Ms. N. SWATHI', designation: 'Assistant Professor' },
-  { sno: 4, name: 'Mrs. G. LUCY', designation: 'Assistant Professor' },
-  { sno: 5, name: 'Ms. A. SWETHA', designation: 'Assistant Professor' },
-  { sno: 6, name: 'Ms. P. SNIGDHASREE', designation: 'Assistant Professor' },
-  { sno: 7, name: 'Ms. P. CHANDANA REDDY', designation: 'Assistant Professor' },
-  { sno: 8, name: 'Ms. L. DEVASENA', designation: 'Assistant Professor' },
-  { sno: 9, name: 'Ms. SHAIK RESHMA', designation: 'Assistant Professor' },
-];
+// Faculty Roster for CAI Department
+const CAI_FACULTY_ROSTER = CSE_FACULTY;
 
 export default function AIDS() {
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -211,6 +196,7 @@ export default function AIDS() {
 
   const filteredFaculty = CAI_FACULTY_ROSTER.filter(f =>
     f.name.toLowerCase().includes(facultySearch.toLowerCase()) ||
+    f.qualification.toLowerCase().includes(facultySearch.toLowerCase()) ||
     f.designation.toLowerCase().includes(facultySearch.toLowerCase())
   );
 
@@ -599,7 +585,7 @@ export default function AIDS() {
               <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
                   <div>
-                    <span className="text-amber-600 font-mono text-xs font-bold uppercase tracking-widest">9 Members Roster</span>
+                    <span className="text-amber-600 font-mono text-xs font-bold uppercase tracking-widest">{CSE_FACULTY.length} Members Roster</span>
                     <h2 className="text-2xl font-serif font-bold text-slate-900">Computer Science & Allied Innovation Faculty Roster</h2>
                   </div>
                   <div className="relative">
@@ -620,26 +606,23 @@ export default function AIDS() {
                       <tr>
                         <th className="p-3.5 text-center">S.No</th>
                         <th className="p-3.5">Name of the Faculty</th>
+                        <th className="p-3.5 text-center">Qualification</th>
                         <th className="p-3.5">Designation</th>
-                        <th className="p-3.5">Qualification</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100 font-sans">
                       {filteredFaculty.map((fac) => (
                         <tr key={fac.sno} className="hover:bg-slate-50 transition-colors">
                           <td className="p-3.5 text-center font-mono font-bold text-blue-900">{fac.sno}</td>
-                          <td className="p-3.5 font-bold text-slate-900 flex items-center gap-2">
+                          <td className="p-3.5 font-bold text-slate-900">
                             {fac.name}
-                            {fac.isPhD && (
-                              <span className="px-2 py-0.5 rounded text-[9px] font-mono font-bold bg-amber-400 text-blue-950">
-                                Ph.D
-                              </span>
-                            )}
+                          </td>
+                          <td className="p-3.5 text-center font-mono text-[11px]">
+                            <span className="px-2.5 py-1 bg-purple-50 text-purple-900 rounded-md border border-purple-200 inline-block font-semibold">
+                              {fac.qualification}
+                            </span>
                           </td>
                           <td className="p-3.5 text-slate-700 font-semibold">{fac.designation}</td>
-                          <td className="p-3.5 text-slate-500 font-mono text-[11px]">
-                            {fac.isPhD ? 'M.Tech, Ph.D.' : 'M.Tech'}
-                          </td>
                         </tr>
                       ))}
                     </tbody>
