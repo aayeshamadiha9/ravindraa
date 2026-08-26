@@ -103,8 +103,8 @@ export const DEPARTMENTS: Department[] = [
     labs: ['VLSI & Embedded Systems Lab', 'Analog & Digital Communications Lab', 'Microprocessors & Microcontrollers Lab', 'Digital Signal Processing Lab', 'Microwave Engineering Lab'],
     careers: ['Embedded Systems Engineer', 'VLSI Design Engineer', 'Telecom Systems Architect', 'IoT Solutions Expert', 'Hardware Test Analyst'],
     image: ECE_DEPT_LAB,
-    hodName: 'Dr. B Madhusudhana Reddy',
-    hodDesignation: 'HoD & Professor',
+    hodName: 'Dr. Madhusudana Reddy Barusu',
+    hodDesignation: 'HOD, ECE Department',
     hodQualification: 'Ph.D.'
   },
   {

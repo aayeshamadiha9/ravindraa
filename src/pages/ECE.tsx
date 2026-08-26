@@ -22,8 +22,8 @@ const ECE_SIDEBAR_MENU = [
 const ECE_BOS_MEMBERS = [
   {
     sno: 1,
-    name: 'Dr. M. Jayalakshmi',
-    organization: 'HoD ECE, Ravindra College of Engineering for Women',
+    name: 'Dr. Madhusudana Reddy Barusu',
+    organization: 'HOD, ECE Department, Ravindra College of Engineering for Women',
     designation: 'Chairman'
   },
   {

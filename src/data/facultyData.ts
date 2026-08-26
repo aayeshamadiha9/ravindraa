@@ -59,9 +59,9 @@ export const CSE_FACULTY: FacultyMember[] = [
 
 export const ECE_FACULTY: FacultyMember[] = [
   { sno: 1, name: 'Dr. N Sreekanth', qualification: 'Ph.D.', designation: 'Professor & Principal', isPhD: true },
-  { sno: 2, name: 'Dr. B Madhusudhana Reddy', qualification: 'Ph.D.', designation: 'HoD & Professor', isPhD: true },
+  { sno: 2, name: 'Dr. Madhusudana Reddy Barusu', qualification: 'Ph.D.', designation: 'HOD, ECE Department', isPhD: true },
   { sno: 3, name: 'Dr. P Bindu Swetha', qualification: 'Ph.D.', designation: 'Professor', isPhD: true },
-  { sno: 4, name: 'Dr. M Jayalakshmi', qualification: 'Ph.D.', designation: 'Assoc. Professor', isPhD: true },
+  { sno: 4, name: 'Dr. M. Jayalakshmi', qualification: 'Ph.D.', designation: 'Associate Professor', isPhD: true },
   { sno: 5, name: 'Dr. Mohebba Naaz', qualification: 'Ph.D.', designation: 'Assoc. Professor', isPhD: true },
   { sno: 6, name: 'Mrs. C Ahalya', qualification: 'M.Tech., (Ph.D.)', designation: 'Assoc. Professor', isPhD: true },
   { sno: 7, name: 'Mrs. M Jyothirmai', qualification: 'M.Tech., (Ph.D.)', designation: 'Asst., Professor', isPhD: true },

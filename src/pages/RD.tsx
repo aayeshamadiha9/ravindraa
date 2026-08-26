@@ -335,7 +335,7 @@ export default function RD() {
 
                     <div className="flex flex-wrap gap-4 text-xs font-mono text-slate-300 bg-white/10 p-3 rounded-xl border border-white/10">
                       <div><strong className="text-white">Principal Investigator:</strong> Dr J. Usha Sree</div>
-                      <div><strong className="text-white">Co-Investigator:</strong> Dr M. Jayalakshmi</div>
+                      <div><strong className="text-white">Co-Investigator:</strong> Dr. M. Jayalakshmi</div>
                     </div>
 
                     <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">

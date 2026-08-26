@@ -38,7 +38,7 @@ export default function Faculty() {
   }, [filteredDepartments]);
 
   const getDesignationBadgeClass = (designation: string) => {
-    if (designation.includes('HoD') || designation.includes('Professor')) {
+    if (designation.includes('HoD') || designation.includes('HOD') || designation.includes('Professor')) {
       return 'bg-amber-100 text-amber-950 border-amber-300 font-bold';
     }
     if (designation.includes('Associate')) {
