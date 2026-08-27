@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, Sparkles, Award, ShieldCheck, CheckCircle2, GraduationCap, Play, Pause, X, Send, Phone, User, Mail, BookOpen, MapPin } from 'lucide-react';
+import { ArrowRight, Award, ShieldCheck, CheckCircle2, GraduationCap, Play, Pause, X, Send, Phone, User, Mail, BookOpen, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// Local campus hero images for the 4 slides matching reference UI
-import HERO_SLIDE_1_AWARD from '../assets/images/rcew_award_2026_main.jpg';
-import HERO_SLIDE_2_NIELIT from '../assets/images/rcew_nielit_bootcamp_lamp_lighting.png';
-import HERO_SLIDE_3_BUILDING from '../assets/images/rcew_main_building_students.png';
-import HERO_SLIDE_4_STUDENTS from '../assets/images/rcew_empowering_women_hero.png';
+// High-resolution local hero images for the 5 uploaded slides
+import HERO_SLIDE_1_AWARD from '../assets/images/hero_award_2026.jpg';
+import HERO_SLIDE_2_NIELIT from '../assets/images/hero_nielit_bootcamp.jpg';
+import HERO_SLIDE_3_HR_CONCLAVE from '../assets/images/hero_hr_conclave_2024.png';
+import HERO_SLIDE_4_CODING_LAB from '../assets/images/hero_student_coding_lab.png';
+import HERO_SLIDE_5_MENTORSHIP from '../assets/images/hero_faculty_mentorship.png';
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -27,42 +28,52 @@ export default function Hero() {
     {
       title: "Guiding Excellence. Empowering Futures.",
       highlightWord: "Futures.",
-      subtitle: "Personalized faculty guidance, interactive Speakeasy coding sessions, and 95%+ campus placements up to 27.0 LPA.",
-      tag: "INTERACTIVE CODING & CAREER MENTORSHIP",
+      subtitle: "Recognized nationally for educational excellence, interactive coding mentorship, and outstanding placements up to 27.0 LPA.",
+      tag: "NATIONAL EXCELLENCE AWARD 2026",
       badgeTag: "RAVW",
       image: HERO_SLIDE_1_AWARD,
       showEmblem: true,
       objectPosition: "object-center"
     },
     {
-      title: "NIELIT Offline Boot Camp & SoC Sign-off.",
-      highlightWord: "SoC Sign-off.",
-      subtitle: "Five-Day hands-on training on 'RTL, IP Integration & SoC Sign-off' funded by Ministry of Electronics & IT (MeitY), Govt. of India.",
+      title: "Five-Day RTL, IP Integration & SoC Sign-Off.",
+      highlightWord: "SoC Sign-Off.",
+      subtitle: "Funded by Ministry of Electronics & Information Technology (MeitY), Govt. of India, Organized by NIELIT, Calicut.",
       tag: "NIELIT & MEITY NATIONAL WORKSHOP",
       badgeTag: "RAVW",
       image: HERO_SLIDE_2_NIELIT,
       showEmblem: false,
-      objectPosition: "object-[38%_center]"
+      objectPosition: "object-center"
     },
     {
-      title: "Igniting Ideas. Inspiring Impact.",
-      highlightWord: "Impact.",
-      subtitle: "Supporting innovation, startups and research that create real-world solutions for a better tomorrow.",
-      tag: "EMPOWERING INNOVATION & STARTUPS",
+      title: "Akarshan - HR Leadership Connect 2024.",
+      highlightWord: "Leadership Connect 2024.",
+      subtitle: "Bridging the gap between corporate HR leaders and engineering students for 95%+ campus placement success.",
+      tag: "HR CONCLAVE & INDUSTRY CONNECT",
       badgeTag: "RAVW",
-      image: HERO_SLIDE_3_BUILDING,
+      image: HERO_SLIDE_3_HR_CONCLAVE,
       showEmblem: false,
       objectPosition: "object-center"
     },
     {
-      title: "Learn. Grow. Lead. Succeed.",
-      highlightWord: "Succeed.",
-      subtitle: "A vibrant campus life that nurtures leadership, creativity, and holistic development.",
-      tag: "CAMPUS LIFE & BEYOND CLASSROOMS",
+      title: "Speakeasy Coding & Practical Lab Mastery.",
+      highlightWord: "Lab Mastery.",
+      subtitle: "Personalized practical coding sessions, data structures, and algorithmic problem solving in modern computing labs.",
+      tag: "PRACTICAL CODING & COMPUTER LABS",
       badgeTag: "RAVW",
-      image: HERO_SLIDE_4_STUDENTS,
+      image: HERO_SLIDE_4_CODING_LAB,
       showEmblem: false,
-      objectPosition: "object-center"
+      objectPosition: "object-[center_35%]"
+    },
+    {
+      title: "Dedicated Faculty Mentorship & Innovation.",
+      highlightWord: "Faculty Mentorship",
+      subtitle: "Hands-on guidance by expert faculty, encouraging young women engineers to build real-world software and research projects.",
+      tag: "EXPERT MENTORSHIP & PROJECT GUIDANCE",
+      badgeTag: "RAVW",
+      image: HERO_SLIDE_5_MENTORSHIP,
+      showEmblem: false,
+      objectPosition: "object-[center_30%]"
     }
   ];
 
@@ -107,7 +118,7 @@ export default function Hero() {
     return (
       <>
         {parts[0]}
-        <span className="bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 bg-clip-text text-transparent font-serif italic">
+        <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 bg-clip-text text-transparent font-serif italic">
           {highlight}
         </span>
         {parts[1]}
@@ -116,35 +127,34 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" aria-label="Hero Showcase" className="relative min-h-[600px] sm:min-h-[650px] lg:min-h-[720px] w-full bg-slate-950 overflow-hidden flex flex-col justify-between py-3 lg:py-4">
+    <section id="home" aria-label="Hero Showcase" className="relative min-h-[650px] sm:min-h-[700px] lg:min-h-[750px] w-full bg-slate-950 overflow-hidden flex flex-col justify-between py-4 lg:py-6">
       
-      {/* FULL-WIDTH HERO IMAGE CAROUSEL BACKGROUND LAYER (100% EDGE-TO-EDGE) */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+      {/* 1. BACKGROUND FULL-WIDTH CRISP UNBLURRED IMAGE SHOWCASE */}
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-slate-950">
         <AnimatePresence mode="wait">
           <motion.img
             key={`hero-img-${currentSlide}`}
-            initial={{ opacity: 0, scale: 1.06 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.97 }}
-            transition={{ duration: 0.8, ease: 'easeInOut' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
             src={slides[currentSlide].image}
             alt={slides[currentSlide].title}
             className={`w-full h-full object-cover ${slides[currentSlide].objectPosition}`}
+            style={{
+              imageRendering: '-webkit-optimize-contrast',
+              backfaceVisibility: 'hidden',
+              transform: 'translateZ(0)'
+            }}
             loading="eager"
           />
         </AnimatePresence>
 
-        {/* Full-width gradient overlays for crystal-clear text readability */}
-        {/* Left-to-right dark gradient to protect text overlay on left */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/75 to-slate-950/35 pointer-events-none z-10" />
-        
-        {/* Top & Bottom dark subtle gradient for navbar and accreditation bar contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-slate-950/60 pointer-events-none z-10" />
-        
-        {/* Subtle radial gold highlight glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_40%,_var(--tw-gradient-stops))] from-blue-900/30 via-transparent to-transparent pointer-events-none z-10" />
+        {/* Clean bottom gradient overlay for text readability without darkening top/center of photo */}
+        <div className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-slate-950 via-slate-950/75 via-45% to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-950/60 to-transparent pointer-events-none z-10" />
 
-        {/* Navy & Orange Brand Framing Lines across 100% Width */}
+        {/* Navy & Gold Accent Framing Lines */}
         <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1e3a8a] via-[#f59e0b] to-[#1e3a8a] z-20" />
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#f59e0b] z-20 opacity-80" />
       </div>
@@ -169,19 +179,19 @@ export default function Hero() {
         </motion.div>
       )}
 
-      {/* MAIN HERO CONTENT OVERLAY CONTAINER (Centered over Full-Width Image) */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex items-center py-6 lg:py-10">
-        <div className="max-w-2xl lg:max-w-3xl space-y-5 lg:space-y-6">
+      {/* 2. TEXT & CONTENT OVERLAY ON TOP OF THE CENTERED IMAGE */}
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex flex-col justify-end pt-12 pb-2 sm:pb-4">
+        <div className="max-w-2xl lg:max-w-3xl space-y-4 sm:space-y-5">
           
           {/* Top Pill Badge */}
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-amber-400/40 text-white shadow-xl"
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 border border-amber-400/50 text-white shadow-xl"
           >
-            <span className="text-xs font-mono font-extrabold text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded-md border border-amber-500/40">
-              {String(currentSlide + 1).padStart(2, '0')}
+            <span className="text-xs font-mono font-extrabold text-amber-400 bg-amber-950/90 px-2 py-0.5 rounded-md border border-amber-500/40">
+              {String(currentSlide + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
             </span>
             <span className="text-xs font-bold uppercase tracking-wider text-blue-100 font-mono">
               {slides[currentSlide].tag}
@@ -191,7 +201,7 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Dynamic Animated Headlines */}
+          {/* Dynamic Animated Headlines Overlaid on Image */}
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
@@ -199,19 +209,19 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="space-y-4"
+              className="space-y-3"
             >
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-[1.14] drop-shadow-lg">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.18] drop-shadow-md">
                 {renderTitle(slides[currentSlide].title, slides[currentSlide].highlightWord)}
               </h1>
 
               {/* Accent Blue Bar + Gold Dot */}
-              <div className="flex items-center gap-2 pt-1">
-                <div className="w-16 h-1.5 bg-[#2563eb] rounded-full shadow-sm" />
+              <div className="flex items-center gap-2 pt-0.5">
+                <div className="w-14 h-1.5 bg-[#2563eb] rounded-full shadow-sm" />
                 <div className="w-2.5 h-2.5 bg-[#f59e0b] rounded-full shadow-sm" />
               </div>
 
-              <p className="text-sm sm:text-base lg:text-lg text-slate-200 font-sans leading-relaxed max-w-2xl pt-1 drop-shadow-md">
+              <p className="text-xs sm:text-sm lg:text-base text-slate-200 font-sans leading-relaxed max-w-2xl drop-shadow-sm">
                 {slides[currentSlide].subtitle}
               </p>
             </motion.div>
@@ -219,10 +229,10 @@ export default function Hero() {
 
           {/* Action Buttons Row */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-wrap items-center gap-4 pt-2"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1"
           >
             <Link
               to="/academics"
@@ -233,26 +243,26 @@ export default function Hero() {
                   handleScrollTo('#featured-departments');
                 }
               }}
-              className="px-8 py-3.5 bg-[#1e3a8a] hover:bg-[#1d4ed8] text-white font-bold tracking-wider uppercase text-xs sm:text-sm rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-2.5 group cursor-pointer border border-blue-400/30"
+              className="px-6 sm:px-7 py-3 bg-[#1e3a8a] hover:bg-[#1d4ed8] text-white font-bold tracking-wider uppercase text-xs sm:text-sm rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-2 group cursor-pointer border border-blue-400/40"
               aria-label="Explore engineering departments"
             >
               EXPLORE DEPARTMENTS
-              <ArrowRight className="h-4.5 w-4.5 group-hover:translate-x-1 transition-transform text-amber-400" />
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform text-amber-400" />
             </Link>
 
             <Link
               to="/admissions"
-              className="px-8 py-3.5 bg-white/95 hover:bg-amber-400 text-blue-950 hover:text-blue-950 border-2 border-[#f59e0b] font-bold tracking-wider uppercase text-xs sm:text-sm rounded-full shadow-md hover:shadow-xl transition-all duration-300 text-center cursor-pointer flex items-center gap-2.5"
+              className="px-6 sm:px-7 py-3 bg-white/95 hover:bg-amber-400 text-blue-950 hover:text-blue-950 border-2 border-[#f59e0b] font-bold tracking-wider uppercase text-xs sm:text-sm rounded-full shadow-md hover:shadow-xl transition-all duration-300 text-center cursor-pointer flex items-center gap-2"
               aria-label="Navigate to admissions page"
             >
-              <GraduationCap className="h-4.5 w-4.5 text-amber-600" />
+              <GraduationCap className="h-4 w-4 text-amber-600" />
               ADMISSIONS INFO
             </Link>
           </motion.div>
 
           {/* Slide Controls Row: Dots + Pause/Play */}
-          <div className="flex items-center gap-4 pt-3">
-            <div className="flex items-center gap-2 bg-slate-950/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10">
+          <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-2 bg-slate-950/70 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15">
               {slides.map((_, idx) => (
                 <button
                   key={idx}
@@ -260,7 +270,7 @@ export default function Hero() {
                   aria-label={`Go to slide ${idx + 1}`}
                   className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                     currentSlide === idx
-                      ? 'w-8 bg-[#f59e0b] ring-2 ring-amber-300'
+                      ? 'w-7 bg-[#f59e0b] ring-2 ring-amber-300'
                       : 'w-2.5 bg-slate-500 hover:bg-slate-300'
                   }`}
                 />
@@ -272,55 +282,55 @@ export default function Hero() {
               aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
               className="w-8 h-8 rounded-full bg-slate-900/80 hover:bg-amber-500 text-white hover:text-slate-950 border border-white/20 flex items-center justify-center transition-colors cursor-pointer backdrop-blur-md"
             >
-              {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4 ml-0.5" />}
+              {isPlaying ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5 ml-0.5" />}
             </button>
           </div>
 
         </div>
       </div>
 
-      {/* FLOATING BOTTOM ACCREDITATION BAR */}
-      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-2 lg:mt-3">
-        <div className="bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-2xl rounded-2xl sm:rounded-3xl p-4 sm:p-5">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+      {/* 3. FLOATING BOTTOM ACCREDITATION BAR */}
+      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-3 sm:mt-4">
+        <div className="bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-2xl rounded-2xl p-3.5 sm:p-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 divide-y md:divide-y-0 md:divide-x divide-slate-100">
             
-            <div className="flex items-center gap-3.5 pt-2 md:pt-0">
-              <div className="p-2.5 bg-amber-50 rounded-xl border border-amber-200/80 shrink-0">
-                <Award className="h-6 w-6 text-amber-600" />
+            <div className="flex items-center gap-3 pt-1 md:pt-0">
+              <div className="p-2 bg-amber-50 rounded-xl border border-amber-200/80 shrink-0">
+                <Award className="h-5 w-5 text-amber-600" />
               </div>
               <div>
-                <p className="text-slate-950 text-xs sm:text-sm font-bold">NAAC Accredited</p>
-                <p className="text-blue-900 text-[10px] font-mono uppercase font-bold">A+ GRADE MARK</p>
+                <p className="text-slate-950 text-xs font-bold">NAAC Accredited</p>
+                <p className="text-blue-900 text-[9.5px] font-mono uppercase font-bold">A+ GRADE MARK</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3.5 pt-2 md:pt-0 md:pl-4">
-              <div className="p-2.5 bg-amber-50 rounded-xl border border-amber-200/80 shrink-0">
-                <ShieldCheck className="h-6 w-6 text-amber-600" />
+            <div className="flex items-center gap-3 pt-1 md:pt-0 md:pl-4">
+              <div className="p-2 bg-amber-50 rounded-xl border border-amber-200/80 shrink-0">
+                <ShieldCheck className="h-5 w-5 text-amber-600" />
               </div>
               <div>
-                <p className="text-slate-950 text-xs sm:text-sm font-bold">NBA Accreditation</p>
-                <p className="text-blue-900 text-[10px] font-mono uppercase font-bold">CSE & ECE CORE</p>
+                <p className="text-slate-950 text-xs font-bold">NBA Accreditation</p>
+                <p className="text-blue-900 text-[9.5px] font-mono uppercase font-bold">CSE & ECE CORE</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3.5 pt-2 md:pt-0 md:pl-4">
-              <div className="p-2.5 bg-amber-50 rounded-xl border border-amber-200/80 shrink-0">
-                <CheckCircle2 className="h-6 w-6 text-amber-600" />
+            <div className="flex items-center gap-3 pt-1 md:pt-0 md:pl-4">
+              <div className="p-2 bg-amber-50 rounded-xl border border-amber-200/80 shrink-0">
+                <CheckCircle2 className="h-5 w-5 text-amber-600" />
               </div>
               <div>
-                <p className="text-slate-950 text-xs sm:text-sm font-bold">AICTE Approved</p>
-                <p className="text-blue-900 text-[10px] font-mono uppercase font-bold">GOVT. RECOGNIZED</p>
+                <p className="text-slate-950 text-xs font-bold">AICTE Approved</p>
+                <p className="text-blue-900 text-[9.5px] font-mono uppercase font-bold">GOVT. RECOGNIZED</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3.5 pt-2 md:pt-0 md:pl-4">
-              <div className="p-2.5 bg-amber-50 rounded-xl border border-amber-200/80 shrink-0">
-                <GraduationCap className="h-6 w-6 text-amber-600" />
+            <div className="flex items-center gap-3 pt-1 md:pt-0 md:pl-4">
+              <div className="p-2 bg-amber-50 rounded-xl border border-amber-200/80 shrink-0">
+                <GraduationCap className="h-5 w-5 text-amber-600" />
               </div>
               <div>
-                <p className="text-slate-950 text-xs sm:text-sm font-bold">JNTUA Affiliated</p>
-                <p className="text-blue-900 text-[10px] font-mono uppercase font-bold">AUTONOMOUS SYLLABUS</p>
+                <p className="text-slate-950 text-xs font-bold">JNTUA Affiliated</p>
+                <p className="text-blue-900 text-[9.5px] font-mono uppercase font-bold">AUTONOMOUS SYLLABUS</p>
               </div>
             </div>
 
