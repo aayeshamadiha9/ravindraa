@@ -18,20 +18,19 @@ const IQAC_SIDEBAR_MENU = [
 // 1. IQAC Committee Members Data
 const IQAC_COMMITTEE_MEMBERS = [
   { sno: 1, name: "Dr. N. Sreekanth", profession: "Principal", designation: "Chairperson" },
-  { sno: 2, name: "Dr. M. Giridhar Kumar", profession: "Dean Administration", designation: "Member" },
-  { sno: 3, name: "Dr. Mohebbanaaz", profession: "Associate Dean Innovations", designation: "Member" },
-  { sno: 4, name: "Mrs. M. Jyothirmai", profession: "Controller of Examinations", designation: "Member" },
-  { sno: 5, name: "Mrs. J Ushasree", profession: "Vice-Principal", designation: "Member" },
-  { sno: 6, name: "Ms. Indhira Priyadharshini. Y", profession: "Head, Corporate Affairs", designation: "Member" },
-  { sno: 7, name: "Dr. Madhusudana Reddy Barusu", profession: "HOD, ECE Department", designation: "Member" },
-  { sno: 8, name: "Dr. Seshadri Ramana", profession: "Head, Dept of CSE", designation: "Member" },
-  { sno: 9, name: "Dr. G.Ramachandra Reddy", profession: "Head, Dept of H&S", designation: "Member" },
-  { sno: 10, name: "Dr. G. Mamatha", profession: "Management", designation: "Member" },
-  { sno: 11, name: "Dr. Y. Pandurangaiah", profession: "Ridge School, GVM Educational Society", designation: "Member" },
-  { sno: 12, name: "Ms. Shaik Reshma Begum", profession: "Alumni", designation: "Member" },
-  { sno: 13, name: "Ms. Yendapalli Manasa", profession: "IV B.Tech-( 203T1A0458)", designation: "Member" },
-  { sno: 14, name: "Ms. G kavitha", profession: "IV B.Tech-(203T1A0535)", designation: "Member" },
-  { sno: 15, name: "Dr. Madhusudana Reddy Barusu", profession: "Dean IQAC", designation: "Member" }
+  { sno: 2, name: "Dr. Mohebbanaaz", profession: "Associate Dean Innovations", designation: "Member" },
+  { sno: 3, name: "Mrs. M. Jyothirmai", profession: "Controller of Examinations", designation: "Member" },
+  { sno: 4, name: "Mrs. J Ushasree", profession: "Vice-Principal", designation: "Member" },
+  { sno: 5, name: "Ms. Indhira Priyadharshini. Y", profession: "Head, Corporate Affairs", designation: "Member" },
+  { sno: 6, name: "Dr. Madhusudana Reddy Barusu", profession: "HOD, ECE Department", designation: "Member" },
+  { sno: 7, name: "Dr. Seshadri Ramana", profession: "Head, Dept of CSE", designation: "Member" },
+  { sno: 8, name: "Mrs. G. Spandana", profession: "HOD of Humanities and Sciences dept", designation: "Member" },
+  { sno: 9, name: "Dr. G. Mamatha", profession: "Management", designation: "Member" },
+  { sno: 10, name: "Dr. Y. Pandurangaiah", profession: "Ridge School, GVM Educational Society", designation: "Member" },
+  { sno: 11, name: "Ms. Shaik Reshma Begum", profession: "Alumni", designation: "Member" },
+  { sno: 12, name: "Ms. Aayesha Madiha", profession: "III B.Tech-(233TA05172)", designation: "Member" },
+  { sno: 13, name: "Ms. Mustabshira Pinjari", profession: "III B.Tech-(233TA05155)", designation: "Member" },
+  { sno: 14, name: "Dr. Madhusudana Reddy Barusu", profession: "Dean IQAC", designation: "Member" }
 ];
 
 // Functions & Responsibilities
@@ -270,7 +269,7 @@ export default function IQAC() {
                         <Users className="h-5 w-5 text-blue-800" />
                         IQAC Committee Members Roster
                       </h3>
-                      <span className="text-xs text-slate-500">15 Active Executive & Academic Committee Members</span>
+                      <span className="text-xs text-slate-500">{IQAC_COMMITTEE_MEMBERS.length} Active Executive & Academic Committee Members</span>
                     </div>
 
                     {/* Search filter */}
