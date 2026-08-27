@@ -1,47 +1,56 @@
 import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Search, UserCheck, GraduationCap, Award, BookOpen, Filter, Sparkles } from 'lucide-react';
+import { motion } from 'motion/react';
+import { Search, UserCheck, GraduationCap } from 'lucide-react';
 import FACULTY_GROUP_IMAGE from '../assets/images/rcew_faculty_group_1785859150336.png';
-import { FACULTY_DATA } from '../data/facultyData';
+import { FACULTY_DATA, DepartmentFacultyData, DepartmentFacultySection, FacultyMember } from '../data/facultyData';
 
 export default function Faculty() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDept, setSelectedDept] = useState('all');
 
-  // Filter logic
+  // Filter logic across departments and sections
   const filteredDepartments = useMemo(() => {
     return FACULTY_DATA.map((dept) => {
       const isDeptSelected = selectedDept === 'all' || selectedDept === dept.id;
       if (!isDeptSelected) {
-        return { ...dept, faculty: [] };
+        return { ...dept, sections: [] };
       }
 
-      const filtered = dept.faculty.filter((member) => {
-        const query = searchQuery.toLowerCase().trim();
-        return (
-          member.name.toLowerCase().includes(query) ||
-          member.designation.toLowerCase().includes(query)
-        );
-      });
+      const query = searchQuery.toLowerCase().trim();
+      const filteredSections = dept.sections.map((section) => {
+        const filteredFaculty = section.faculty.filter((member) => {
+          if (!query) return true;
+          return (
+            member.name.toLowerCase().includes(query) ||
+            member.designation.toLowerCase().includes(query) ||
+            member.qualification.toLowerCase().includes(query)
+          );
+        });
+        return { ...section, faculty: filteredFaculty };
+      }).filter((section) => section.faculty.length > 0);
 
-      return { ...dept, faculty: filtered };
-    }).filter((dept) => dept.faculty.length > 0);
+      return { ...dept, sections: filteredSections };
+    }).filter((dept) => dept.sections.length > 0);
   }, [searchQuery, selectedDept]);
 
   // Total counts for stats
   const totalFacultyCount = useMemo(() => {
-    return FACULTY_DATA.reduce((acc, curr) => acc + curr.faculty.length, 0);
+    return FACULTY_DATA.reduce((acc, curr) => {
+      return acc + curr.sections.reduce((sAcc, sCurr) => sAcc + sCurr.faculty.length, 0);
+    }, 0);
   }, []);
 
   const totalFilteredCount = useMemo(() => {
-    return filteredDepartments.reduce((acc, curr) => acc + curr.faculty.length, 0);
+    return filteredDepartments.reduce((acc, curr) => {
+      return acc + curr.sections.reduce((sAcc, sCurr) => sAcc + sCurr.faculty.length, 0);
+    }, 0);
   }, [filteredDepartments]);
 
   const getDesignationBadgeClass = (designation: string) => {
-    if (designation.includes('HoD') || designation.includes('HOD') || designation.includes('Professor')) {
+    if (designation.includes('HoD') || designation.includes('HOD') || designation.includes('Professor') && !designation.includes('Asst') && !designation.includes('Assoc')) {
       return 'bg-amber-100 text-amber-950 border-amber-300 font-bold';
     }
-    if (designation.includes('Associate')) {
+    if (designation.includes('Associate') || designation.includes('Assoc')) {
       return 'bg-blue-100 text-blue-950 border-blue-200 font-semibold';
     }
     return 'bg-slate-100 text-slate-800 border-slate-200 font-medium';
@@ -61,7 +70,7 @@ export default function Faculty() {
                 transition={{ duration: 0.5 }}
                 className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white/10 text-amber-300 border border-amber-400/30"
               >
-                <UserCheck className="h-4 w-4 text-amber-400" /> Academic Leadership & Faculty
+                <UserCheck className="h-4 w-4 text-amber-400" /> Academic Leadership & Faculty Roster
               </motion.div>
 
               <motion.h1
@@ -79,7 +88,7 @@ export default function Faculty() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-blue-100 text-base sm:text-lg leading-relaxed font-normal"
               >
-                Meet the experienced and dedicated faculty members of Ravindra Engineering College for Women committed to academic excellence, innovation, and student success.
+                Experienced and dedicated faculty members of Ravindra College of Engineering for Women organized clearly by Department and Degree specialization.
               </motion.p>
 
               {/* Quick Stats Grid */}
@@ -95,7 +104,7 @@ export default function Faculty() {
                 </div>
                 <div className="bg-white/10 backdrop-blur-md border border-white/20 p-3.5 rounded-2xl shadow-sm text-center">
                   <span className="text-amber-300 font-serif font-bold text-xl sm:text-2xl block">{FACULTY_DATA.length}</span>
-                  <span className="text-[10px] text-blue-100 font-mono uppercase tracking-wider font-bold">Academic Streams</span>
+                  <span className="text-[10px] text-blue-100 font-mono uppercase tracking-wider font-bold">Academic Departments</span>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md border border-white/20 p-3.5 rounded-2xl shadow-sm text-center">
                   <span className="text-amber-300 font-serif font-bold text-xl sm:text-2xl block">100%</span>
@@ -199,7 +208,7 @@ export default function Faculty() {
 
       {/* DEPARTMENT TABLES SECTION */}
       <section className="py-14">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           {filteredDepartments.length === 0 ? (
             <div className="bg-white p-12 rounded-2xl text-center border border-slate-200 shadow-sm">
               <Search className="h-12 w-12 text-slate-300 mx-auto mb-4" />
@@ -220,7 +229,7 @@ export default function Faculty() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="space-y-5"
+                className="space-y-8"
                 id={`dept-${dept.id}`}
               >
                 {/* Department Section Header */}
@@ -240,64 +249,87 @@ export default function Faculty() {
                   </div>
 
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-50 text-amber-900 border border-amber-300 shrink-0 self-start sm:self-auto">
-                    {dept.faculty.length} Members
+                    {dept.sections.reduce((acc, sec) => acc + sec.faculty.length, 0)} Total Members
                   </span>
                 </div>
 
-                {/* Responsive Faculty Table Card */}
-                <div className="bg-white rounded-2xl shadow-2xs border border-slate-200 overflow-hidden">
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse">
-                      {/* Sticky Table Header */}
-                      <thead>
-                        <tr className="bg-blue-800 text-white font-serif font-bold uppercase text-[11px] border-b-2 border-amber-400">
-                          <th scope="col" className="py-4 px-6 w-20 text-center">S.No</th>
-                          <th scope="col" className="py-4 px-6">Faculty Name</th>
-                          <th scope="col" className="py-4 px-6">Qualification</th>
-                          <th scope="col" className="py-4 px-6">Designation</th>
-                        </tr>
-                      </thead>
+                {/* Render Sections (e.g., B.Tech & M.Tech) */}
+                <div className="space-y-10">
+                  {dept.sections.map((section) => (
+                    <div key={section.id} className="space-y-4">
+                      {/* Section Title Header */}
+                      <div className="p-3.5 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white rounded-xl flex items-center justify-between shadow-xs border-l-4 border-amber-400">
+                        <div>
+                          <h3 className="font-serif font-bold text-white text-base sm:text-lg">
+                            {section.title}
+                          </h3>
+                          {section.subtitle && (
+                            <p className="text-[11px] text-blue-200 font-mono">{section.subtitle}</p>
+                          )}
+                        </div>
+                        <span className="px-3 py-0.5 rounded-full text-xs font-mono font-bold bg-amber-400 text-blue-950">
+                          {section.faculty.length} Members
+                        </span>
+                      </div>
 
-                      {/* Alternating Table Rows */}
-                      <tbody className="divide-y divide-slate-100 text-xs sm:text-sm text-slate-800">
-                        {dept.faculty.map((member, index) => (
-                          <tr
-                            key={member.sno}
-                            className={`transition-colors hover:bg-blue-50/40 ${
-                              index % 2 === 0
-                                ? 'bg-white'
-                                : 'bg-slate-50/60'
-                            }`}
-                          >
-                            <td className="py-3.5 px-6 font-mono font-bold text-center text-blue-800">
-                              {member.sno}
-                            </td>
+                      {/* Section Faculty Table */}
+                      <div className="bg-white rounded-2xl shadow-2xs border border-slate-200 overflow-hidden">
+                        <div className="overflow-x-auto">
+                          <table className="w-full text-left border-collapse">
+                            <thead>
+                              <tr className="bg-slate-100 text-slate-800 font-serif font-bold uppercase text-[11px] border-b border-slate-200">
+                                <th scope="col" className="py-3.5 px-6 w-20 text-center">S.No</th>
+                                <th scope="col" className="py-3.5 px-6">Faculty Name</th>
+                                <th scope="col" className="py-3.5 px-6 text-center">Qualification</th>
+                                <th scope="col" className="py-3.5 px-6 text-center">Designation</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-slate-100 text-xs sm:text-sm text-slate-800">
+                              {section.faculty.map((member, index) => (
+                                <tr
+                                  key={member.sno}
+                                  className={`transition-colors hover:bg-blue-50/40 ${
+                                    index % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'
+                                  }`}
+                                >
+                                  <td className="py-3.5 px-6 font-mono font-bold text-center text-blue-800">
+                                    {member.sno}
+                                  </td>
 
-                            <td className="py-3.5 px-6 font-semibold text-slate-950">
-                              <div className="flex items-center gap-3">
-                                <div className="w-7 h-7 rounded-full bg-blue-50 text-blue-800 flex items-center justify-center text-xs font-bold shrink-0 border border-blue-200">
-                                  {member.name.replace(/^(Dr\.|Mrs\.|Mr\.|Ms\.)\s*/, '').charAt(0)}
-                                </div>
-                                <span>{member.name}</span>
-                              </div>
-                            </td>
+                                  <td className="py-3.5 px-6 font-semibold text-slate-950">
+                                    <div className="flex items-center gap-3">
+                                      <div className="w-7 h-7 rounded-full bg-blue-50 text-blue-800 flex items-center justify-center text-xs font-bold shrink-0 border border-blue-200">
+                                        {member.name.replace(/^(Dr\.|Mrs\.|Mr\.|Ms\.)\s*/, '').charAt(0)}
+                                      </div>
+                                      {member.link ? (
+                                        <a href={member.link} className="hover:text-blue-600 hover:underline transition-colors">
+                                          {member.name}
+                                        </a>
+                                      ) : (
+                                        <span>{member.name}</span>
+                                      )}
+                                    </div>
+                                  </td>
 
-                            <td className="py-3.5 px-6">
-                              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono font-semibold bg-purple-50 text-purple-900 border border-purple-200">
-                                {member.qualification}
-                              </span>
-                            </td>
+                                  <td className="py-3.5 px-6 text-center">
+                                    <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono font-semibold bg-purple-50 text-purple-900 border border-purple-200">
+                                      {member.qualification}
+                                    </span>
+                                  </td>
 
-                            <td className="py-3.5 px-6">
-                              <span className={`inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium border ${getDesignationBadgeClass(member.designation)}`}>
-                                {member.designation}
-                              </span>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                                  <td className="py-3.5 px-6 text-center">
+                                    <span className={`inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium border ${getDesignationBadgeClass(member.designation)}`}>
+                                      {member.designation}
+                                    </span>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
             ))

@@ -171,10 +171,7 @@ const OBE_DATA_CAI = {
   ]
 };
 
-import { CSE_FACULTY } from '../data/facultyData';
-
-// Faculty Roster for CAI Department
-const CAI_FACULTY_ROSTER = CSE_FACULTY;
+import { BTECH_CAI_FACULTY, MTECH_AIML_FACULTY } from '../data/facultyData';
 
 export default function AIDS() {
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -194,11 +191,6 @@ export default function AIDS() {
     image: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&q=80&w=800'
   };
 
-  const filteredFaculty = CAI_FACULTY_ROSTER.filter(f =>
-    f.name.toLowerCase().includes(facultySearch.toLowerCase()) ||
-    f.qualification.toLowerCase().includes(facultySearch.toLowerCase()) ||
-    f.designation.toLowerCase().includes(facultySearch.toLowerCase())
-  );
 
   return (
     <div className="min-h-screen bg-slate-50 py-8 sm:py-12">
@@ -582,11 +574,15 @@ export default function AIDS() {
 
             {/* 6. FACULTY MEMBERS TAB */}
             {activeTab === 'faculty' && (
-              <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm space-y-6">
+              <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm space-y-8 animate-fadeIn">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
                   <div>
-                    <span className="text-amber-600 font-mono text-xs font-bold uppercase tracking-widest">{CSE_FACULTY.length} Members Roster</span>
-                    <h2 className="text-2xl font-serif font-bold text-slate-900">Computer Science & Allied Innovation Faculty Roster</h2>
+                    <span className="text-amber-600 font-mono text-xs font-bold uppercase tracking-widest">
+                      {BTECH_CAI_FACULTY.length + MTECH_AIML_FACULTY.length} Core Faculty Members
+                    </span>
+                    <h2 className="text-2xl font-serif font-bold text-slate-900 mt-0.5">
+                      Department of CSE (Artificial Intelligence) Faculty Roster
+                    </h2>
                   </div>
                   <div className="relative">
                     <Search className="h-4 w-4 text-slate-400 absolute left-3 top-2.5" />
@@ -600,34 +596,97 @@ export default function AIDS() {
                   </div>
                 </div>
 
-                <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-2xs">
-                  <table className="w-full text-left text-xs text-slate-700">
-                    <thead className="bg-blue-900 text-white font-mono uppercase text-[11px]">
-                      <tr>
-                        <th className="p-3.5 text-center">S.No</th>
-                        <th className="p-3.5">Name of the Faculty</th>
-                        <th className="p-3.5 text-center">Qualification</th>
-                        <th className="p-3.5">Designation</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100 font-sans">
-                      {filteredFaculty.map((fac) => (
-                        <tr key={fac.sno} className="hover:bg-slate-50 transition-colors">
-                          <td className="p-3.5 text-center font-mono font-bold text-blue-900">{fac.sno}</td>
-                          <td className="p-3.5 font-bold text-slate-900">
-                            {fac.name}
-                          </td>
-                          <td className="p-3.5 text-center font-mono text-[11px]">
-                            <span className="px-2.5 py-1 bg-purple-50 text-purple-900 rounded-md border border-purple-200 inline-block font-semibold">
-                              {fac.qualification}
+                {(() => {
+                  const filterList = (list: typeof BTECH_CAI_FACULTY) => {
+                    if (!facultySearch.trim()) return list;
+                    const query = facultySearch.toLowerCase();
+                    return list.filter(f =>
+                      f.name.toLowerCase().includes(query) ||
+                      f.qualification.toLowerCase().includes(query) ||
+                      f.designation.toLowerCase().includes(query)
+                    );
+                  };
+
+                  const filteredBTech = filterList(BTECH_CAI_FACULTY);
+                  const filteredMTech = filterList(MTECH_AIML_FACULTY);
+
+                  const renderTable = (list: typeof BTECH_CAI_FACULTY) => (
+                    <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-2xs bg-white">
+                      <table className="w-full text-left text-xs text-slate-700">
+                        <thead className="bg-blue-900 text-white font-mono uppercase text-[11px]">
+                          <tr>
+                            <th className="p-3.5 text-center w-16">S.No</th>
+                            <th className="p-3.5">Name of the Faculty</th>
+                            <th className="p-3.5 text-center">Qualification</th>
+                            <th className="p-3.5 text-center">Designation</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100 font-sans">
+                          {list.map((fac) => (
+                            <tr key={fac.sno} className="hover:bg-blue-50/40 transition-colors">
+                              <td className="p-3.5 text-center font-mono font-bold text-blue-900">{fac.sno}</td>
+                              <td className="p-3.5 font-bold text-slate-900">
+                                {fac.link ? (
+                                  <a href={fac.link} className="hover:text-blue-600 hover:underline transition-colors">
+                                    {fac.name}
+                                  </a>
+                                ) : (
+                                  <span>{fac.name}</span>
+                                )}
+                              </td>
+                              <td className="p-3.5 text-center font-mono text-[11px]">
+                                <span className="px-2.5 py-1 bg-purple-50 text-purple-900 rounded-md border border-purple-200 inline-block font-semibold">
+                                  {fac.qualification}
+                                </span>
+                              </td>
+                              <td className="p-3.5 text-center text-slate-700 font-semibold">{fac.designation}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  );
+
+                  return (
+                    <div className="space-y-8">
+                      {/* SECTION 1: B.Tech – Faculty Members (CSE – AI) */}
+                      <div className="space-y-3">
+                        <div className="p-4 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 text-slate-950 rounded-2xl flex items-center justify-between shadow-md">
+                          <div>
+                            <span className="text-[10px] font-mono font-bold uppercase tracking-wider bg-slate-950 text-amber-300 px-2 py-0.5 rounded">
+                              Undergraduate Program (CAI)
                             </span>
-                          </td>
-                          <td className="p-3.5 text-slate-700 font-semibold">{fac.designation}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                            <h3 className="font-serif font-bold text-slate-950 text-base sm:text-lg mt-1">
+                              B.Tech – Faculty Members (CSE – AI)
+                            </h3>
+                          </div>
+                          <span className="px-3 py-1 bg-slate-950 text-amber-400 font-mono font-bold text-xs rounded-full shadow-xs">
+                            {filteredBTech.length} Members
+                          </span>
+                        </div>
+                        {renderTable(filteredBTech)}
+                      </div>
+
+                      {/* SECTION 2: M.Tech – Faculty Members (CSE – AI & ML) */}
+                      <div className="space-y-3 pt-2">
+                        <div className="p-4 bg-gradient-to-r from-blue-900 via-slate-900 to-blue-900 text-white rounded-2xl flex items-center justify-between shadow-md border-l-4 border-amber-400">
+                          <div>
+                            <span className="text-[10px] font-mono font-bold uppercase tracking-wider bg-amber-400 text-blue-950 px-2 py-0.5 rounded">
+                              Postgraduate Program (AI & ML)
+                            </span>
+                            <h3 className="font-serif font-bold text-white text-base sm:text-lg mt-1">
+                              M.Tech – Faculty Members (CSE – AI & ML)
+                            </h3>
+                          </div>
+                          <span className="px-3 py-1 bg-amber-400 text-blue-950 font-mono font-bold text-xs rounded-full shadow-xs">
+                            {filteredMTech.length} Members
+                          </span>
+                        </div>
+                        {renderTable(filteredMTech)}
+                      </div>
+                    </div>
+                  );
+                })()}
               </div>
             )}
 

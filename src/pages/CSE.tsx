@@ -173,7 +173,7 @@ const OBE_DATA = {
   ]
 };
 
-import { CSE_FACULTY } from '../data/facultyData';
+import { BTECH_CSE_FACULTY, MTECH_CSE_FACULTY } from '../data/facultyData';
 
 export default function CSE() {
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -926,10 +926,10 @@ export default function CSE() {
                   <div>
                     <span className="text-xs font-mono font-bold uppercase tracking-widest text-blue-600">RCEW Academic Roster</span>
                     <h1 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900 mt-1">
-                      Department of CSE Faculty Members
+                      Department of Computer Science and Engineering
                     </h1>
                     <p className="text-xs font-semibold text-slate-500 font-serif mt-0.5">
-                      65 Core Faculty Members across B.Tech, M.Tech & CAI Specializations
+                      Core Faculty Roster — B.Tech (CSE) & M.Tech (CSE)
                     </p>
                   </div>
 
@@ -946,19 +946,9 @@ export default function CSE() {
                   </div>
                 </div>
 
-                {/* Summary Metrics & Filter Pills */}
-                <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-4">
-                  <button
-                    onClick={() => setFacultyFilter('all')}
-                    className="px-4 py-1.5 rounded-full text-xs font-mono font-bold transition-all bg-blue-600 text-white shadow-xs"
-                  >
-                    All Faculty ({CSE_FACULTY.length})
-                  </button>
-                </div>
-
                 {/* Helper Table Renderer Function */}
                 {(() => {
-                  const filterList = (list: typeof CSE_FACULTY) => {
+                  const filterList = (list: typeof BTECH_CSE_FACULTY) => {
                     if (!facultySearch.trim()) return list;
                     const query = facultySearch.toLowerCase();
                     return list.filter(f =>
@@ -968,68 +958,97 @@ export default function CSE() {
                     );
                   };
 
-                  const filteredMembers = filterList(CSE_FACULTY);
+                  const filteredBTech = filterList(BTECH_CSE_FACULTY);
+                  const filteredMTech = filterList(MTECH_CSE_FACULTY);
+
+                  const renderTable = (list: typeof BTECH_CSE_FACULTY) => (
+                    <div className="overflow-x-auto border border-slate-200 rounded-2xl shadow-xs bg-white">
+                      <table className="w-full text-left text-xs sm:text-sm">
+                        <thead className="bg-slate-100 text-slate-800 font-serif font-bold uppercase text-[11px] border-b border-slate-200">
+                          <tr>
+                            <th className="py-3.5 px-4 w-16 text-center">S.No</th>
+                            <th className="py-3.5 px-4">Name of the Faculty</th>
+                            <th className="py-3.5 px-4 text-center">Qualification</th>
+                            <th className="py-3.5 px-4 text-center">Designation</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100 text-slate-700">
+                          {list.map((fac) => {
+                            let badgeStyle = "bg-slate-100 text-slate-800 border-slate-200";
+                            if (fac.designation.includes('HoD') || fac.designation.includes('Principal')) {
+                              badgeStyle = "bg-amber-500 text-white font-bold shadow-2xs";
+                            } else if (fac.designation.includes('Assoc. Professor') || fac.designation.includes('Associate Professor')) {
+                              badgeStyle = "bg-blue-600 text-white font-bold shadow-2xs";
+                            } else if (fac.designation.includes('Asst., Professor') || fac.designation.includes('Assistant Professor')) {
+                              badgeStyle = "bg-slate-100 text-slate-800 border border-slate-200 font-medium";
+                            }
+
+                            return (
+                              <tr key={fac.sno} className="hover:bg-blue-50/40 transition-colors">
+                                <td className="py-3 px-4 font-mono font-bold text-center text-blue-700">{fac.sno}</td>
+                                <td className="py-3 px-4 font-bold text-slate-900">
+                                  {fac.link ? (
+                                    <a href={fac.link} className="hover:text-blue-600 hover:underline transition-colors">
+                                      {fac.name}
+                                    </a>
+                                  ) : (
+                                    <span>{fac.name}</span>
+                                  )}
+                                </td>
+                                <td className="py-3 px-4 text-center font-mono text-xs font-semibold text-purple-900">
+                                  <span className="px-2.5 py-1 bg-purple-50 rounded-md border border-purple-200 inline-block">
+                                    {fac.qualification}
+                                  </span>
+                                </td>
+                                <td className="py-3 px-4 text-center">
+                                  <span className={`px-3 py-1 rounded-full text-[11px] inline-block ${badgeStyle}`}>
+                                    {fac.designation}
+                                  </span>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                  );
 
                   return (
-                    <div className="space-y-4 pt-2">
-                      {/* Section Header Banner */}
-                      <div className="p-4 bg-gradient-to-r from-blue-50/80 via-indigo-50/40 to-slate-50 border-l-4 border-blue-600 rounded-r-2xl flex items-center justify-between shadow-xs">
-                        <div>
-                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded border border-blue-200">
-                            Department Roster
+                    <div className="space-y-8 pt-2">
+                      {/* SECTION 1: B.Tech – Faculty Members (CSE) */}
+                      <div className="space-y-4">
+                        <div className="p-4 bg-gradient-to-r from-blue-900 to-slate-900 text-white rounded-2xl flex items-center justify-between shadow-md">
+                          <div>
+                            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-300 bg-white/10 px-2 py-0.5 rounded border border-amber-400/30">
+                              Undergraduate Program
+                            </span>
+                            <h3 className="font-serif font-bold text-white text-base sm:text-xl mt-1">
+                              B.Tech – Faculty Members (CSE)
+                            </h3>
+                          </div>
+                          <span className="px-3 py-1 bg-amber-400 text-blue-950 font-mono font-bold text-xs rounded-full shadow-xs">
+                            {filteredBTech.length} Members
                           </span>
-                          <h3 className="font-serif font-bold text-slate-900 text-base sm:text-lg mt-1">
-                            DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING (ARTIFICIAL INTELLIGENCE)
-                          </h3>
                         </div>
-                        <span className="px-3 py-1 bg-white text-blue-900 font-mono font-bold text-xs rounded-full border border-blue-200 shadow-2xs">
-                          {filteredMembers.length} Members
-                        </span>
+                        {renderTable(filteredBTech)}
                       </div>
 
-                      {/* Table */}
-                      <div className="overflow-x-auto border border-slate-200 rounded-2xl shadow-xs bg-white">
-                        <table className="w-full text-left text-xs sm:text-sm">
-                          <thead className="bg-slate-100 text-slate-800 font-serif font-bold uppercase text-[11px] border-b border-slate-200">
-                            <tr>
-                              <th className="py-3.5 px-4 w-16 text-center">S.No</th>
-                              <th className="py-3.5 px-4">Name of the Faculty</th>
-                              <th className="py-3.5 px-4 text-center">Qualification</th>
-                              <th className="py-3.5 px-4 text-center">Designation</th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y divide-slate-100 text-slate-700">
-                            {filteredMembers.map((fac) => {
-                              let badgeStyle = "bg-slate-100 text-slate-800 border-slate-200";
-                              if (fac.designation.includes('HoD') || fac.designation.includes('Principal')) {
-                                badgeStyle = "bg-amber-500 text-white font-bold shadow-2xs";
-                              } else if (fac.designation.includes('Assoc. Professor') || fac.designation.includes('Associate Professor')) {
-                                badgeStyle = "bg-blue-600 text-white font-bold shadow-2xs";
-                              } else if (fac.designation.includes('Asst., Professor') || fac.designation.includes('Assistant Professor')) {
-                                badgeStyle = "bg-slate-100 text-slate-800 border border-slate-200 font-medium";
-                              }
-
-                              return (
-                                <tr key={fac.sno} className="hover:bg-blue-50/40 transition-colors">
-                                  <td className="py-3 px-4 font-mono font-bold text-center text-blue-700">{fac.sno}</td>
-                                  <td className="py-3 px-4 font-bold text-slate-900 flex items-center gap-2">
-                                    <span>{fac.name}</span>
-                                  </td>
-                                  <td className="py-3 px-4 text-center font-mono text-xs font-semibold text-purple-900">
-                                    <span className="px-2.5 py-1 bg-purple-50 rounded-md border border-purple-200 inline-block">
-                                      {fac.qualification}
-                                    </span>
-                                  </td>
-                                  <td className="py-3 px-4 text-center">
-                                    <span className={`px-3 py-1 rounded-full text-[11px] inline-block ${badgeStyle}`}>
-                                      {fac.designation}
-                                    </span>
-                                  </td>
-                                </tr>
-                              );
-                            })}
-                          </tbody>
-                        </table>
+                      {/* SECTION 2: M.Tech – Faculty Members (CSE) */}
+                      <div className="space-y-4 pt-4">
+                        <div className="p-4 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white rounded-2xl flex items-center justify-between shadow-md border-l-4 border-amber-400">
+                          <div>
+                            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-200 bg-white/10 px-2 py-0.5 rounded border border-white/20">
+                              Postgraduate Program
+                            </span>
+                            <h3 className="font-serif font-bold text-white text-base sm:text-xl mt-1">
+                              M.Tech – Faculty Members (CSE)
+                            </h3>
+                          </div>
+                          <span className="px-3 py-1 bg-blue-800 text-amber-300 font-mono font-bold text-xs rounded-full border border-amber-400/40">
+                            {filteredMTech.length} Members
+                          </span>
+                        </div>
+                        {renderTable(filteredMTech)}
                       </div>
                     </div>
                   );
