@@ -1,31 +1,51 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
-import { Search, UserCheck, GraduationCap } from 'lucide-react';
+import { Search, UserCheck, GraduationCap, Filter, ChevronDown } from 'lucide-react';
 import FACULTY_GROUP_IMAGE from '../assets/images/rcew_faculty_group_1785859150336.png';
-import { FACULTY_DATA, DepartmentFacultyData, DepartmentFacultySection, FacultyMember } from '../data/facultyData';
+import { FACULTY_DATA } from '../data/facultyData';
 
 export default function Faculty() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDept, setSelectedDept] = useState('all');
 
+  const filterOptions = [
+    { value: 'all', label: 'All Departments' },
+    { value: 'CSE', label: 'CSE (B.Tech)' },
+    { value: 'CSE-AI', label: 'CSE – Artificial Intelligence' },
+    { value: 'M.Tech CSE', label: 'M.Tech CSE' },
+    { value: 'M.Tech CSE-AI & ML', label: 'M.Tech CSE – AI & ML' },
+    { value: 'ECE', label: 'ECE' },
+    { value: 'H&S', label: 'Humanities & Sciences (H&S)' }
+  ];
+
   // Filter logic across departments and sections
   const filteredDepartments = useMemo(() => {
-    return FACULTY_DATA.map((dept) => {
-      const isDeptSelected = selectedDept === 'all' || selectedDept === dept.id;
-      if (!isDeptSelected) {
-        return { ...dept, sections: [] };
-      }
+    const query = searchQuery.toLowerCase().trim();
 
-      const query = searchQuery.toLowerCase().trim();
+    return FACULTY_DATA.map((dept) => {
       const filteredSections = dept.sections.map((section) => {
+        // Check if section matches selected department filter
+        const matchesFilter =
+          selectedDept === 'all' ||
+          section.deptKey === selectedDept ||
+          (selectedDept === 'ECE' && section.deptKey === 'ECE') ||
+          (selectedDept === 'H&S' && section.deptKey === 'H&S');
+
+        if (!matchesFilter) {
+          return { ...section, faculty: [] };
+        }
+
+        // Apply search query filter
         const filteredFaculty = section.faculty.filter((member) => {
           if (!query) return true;
           return (
             member.name.toLowerCase().includes(query) ||
             member.designation.toLowerCase().includes(query) ||
-            member.qualification.toLowerCase().includes(query)
+            member.qualification.toLowerCase().includes(query) ||
+            member.department.toLowerCase().includes(query)
           );
         });
+
         return { ...section, faculty: filteredFaculty };
       }).filter((section) => section.faculty.length > 0);
 
@@ -47,7 +67,7 @@ export default function Faculty() {
   }, [filteredDepartments]);
 
   const getDesignationBadgeClass = (designation: string) => {
-    if (designation.includes('HoD') || designation.includes('HOD') || designation.includes('Professor') && !designation.includes('Asst') && !designation.includes('Assoc')) {
+    if (designation.includes('HoD') || designation.includes('HOD') || (designation.includes('Professor') && !designation.includes('Asst') && !designation.includes('Assoc'))) {
       return 'bg-amber-100 text-amber-950 border-amber-300 font-bold';
     }
     if (designation.includes('Associate') || designation.includes('Assoc')) {
@@ -59,7 +79,7 @@ export default function Faculty() {
   return (
     <div className="bg-slate-50 min-h-screen">
       {/* HERO SECTION */}
-      <section className="relative bg-gradient-to-b from-blue-900 via-blue-800 to-slate-900 py-16 border-b-2 border-amber-400/80 text-white shadow-md">
+      <section className="relative bg-gradient-to-b from-blue-900 via-blue-800 to-slate-900 py-14 border-b-2 border-amber-400/80 text-white shadow-md">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Left Column: Heading & Info */}
@@ -70,7 +90,7 @@ export default function Faculty() {
                 transition={{ duration: 0.5 }}
                 className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white/10 text-amber-300 border border-amber-400/30"
               >
-                <UserCheck className="h-4 w-4 text-amber-400" /> Academic Leadership & Faculty Roster
+                <UserCheck className="h-4 w-4 text-amber-400" /> Academic Leadership & Faculty Directory
               </motion.div>
 
               <motion.h1
@@ -79,7 +99,7 @@ export default function Faculty() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-tight"
               >
-                Faculty Members
+                Faculty Roster
               </motion.h1>
 
               <motion.p
@@ -88,7 +108,7 @@ export default function Faculty() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-blue-100 text-base sm:text-lg leading-relaxed font-normal"
               >
-                Experienced and dedicated faculty members of Ravindra College of Engineering for Women organized clearly by Department and Degree specialization.
+                Comprehensive directory of Ravindra College of Engineering for Women faculty members, clearly classified by department and degree program.
               </motion.p>
 
               {/* Quick Stats Grid */}
@@ -104,7 +124,7 @@ export default function Faculty() {
                 </div>
                 <div className="bg-white/10 backdrop-blur-md border border-white/20 p-3.5 rounded-2xl shadow-sm text-center">
                   <span className="text-amber-300 font-serif font-bold text-xl sm:text-2xl block">{FACULTY_DATA.length}</span>
-                  <span className="text-[10px] text-blue-100 font-mono uppercase tracking-wider font-bold">Academic Departments</span>
+                  <span className="text-[10px] text-blue-100 font-mono uppercase tracking-wider font-bold">Academic Streams</span>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md border border-white/20 p-3.5 rounded-2xl shadow-sm text-center">
                   <span className="text-amber-300 font-serif font-bold text-xl sm:text-2xl block">100%</span>
@@ -112,7 +132,7 @@ export default function Faculty() {
                 </div>
                 <div className="bg-white/10 backdrop-blur-md border border-white/20 p-3.5 rounded-2xl shadow-sm text-center">
                   <span className="text-amber-300 font-serif font-bold text-xl sm:text-2xl block">JNTUA</span>
-                  <span className="text-[10px] text-blue-100 font-mono uppercase tracking-wider font-bold">Aligned Syllabus</span>
+                  <span className="text-[10px] text-blue-100 font-mono uppercase tracking-wider font-bold">Autonomous Syllabus</span>
                 </div>
               </motion.div>
             </div>
@@ -146,79 +166,95 @@ export default function Faculty() {
       <section className="sticky top-[72px] z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-2xs py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
-            {/* Search Bar Input */}
+            
+            {/* Search Input */}
             <div className="relative flex-grow max-w-md">
               <Search className="absolute left-3.5 top-3.5 h-4.5 w-4.5 text-slate-400" />
               <input
                 type="text"
-                placeholder="Search faculty by name or designation..."
+                placeholder="Search faculty name or designation..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-slate-800 outline-none focus:border-blue-800 transition-colors"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-10 py-2.5 text-xs sm:text-sm text-slate-800 outline-none focus:border-blue-800 transition-colors"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-3 text-xs text-slate-400 hover:text-slate-600"
+                  className="absolute right-3 top-3 text-xs text-slate-400 hover:text-slate-600 font-semibold"
                 >
                   Clear
                 </button>
               )}
             </div>
 
-            {/* Department Filter Tabs */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+            {/* Department Selector Dropdown & Filter Pills */}
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2">
+                <Filter className="h-4 w-4 text-blue-800 shrink-0" />
+                <span className="text-xs font-bold font-mono text-slate-700 uppercase">Department:</span>
+              </div>
+
+              {/* Dropdown Selector */}
+              <div className="relative">
+                <select
+                  value={selectedDept}
+                  onChange={(e) => setSelectedDept(e.target.value)}
+                  className="bg-slate-900 text-amber-300 font-mono font-bold text-xs sm:text-sm px-4 py-2.5 pr-8 rounded-xl border border-amber-400/40 shadow-xs appearance-none cursor-pointer outline-none focus:ring-2 focus:ring-amber-400"
+                >
+                  {filterOptions.map((opt) => (
+                    <option key={opt.value} value={opt.value} className="bg-slate-900 text-white font-sans">
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="h-4 w-4 text-amber-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
+            </div>
+
+          </div>
+
+          {/* Quick Filter Buttons Row */}
+          <div className="mt-3 flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+            {filterOptions.map((opt) => (
               <button
-                onClick={() => setSelectedDept('all')}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer ${
-                  selectedDept === 'all'
-                    ? 'bg-blue-800 text-white shadow-xs border border-blue-900'
-                    : 'bg-slate-100 text-slate-700 hover:bg-blue-50/60'
+                key={opt.value}
+                onClick={() => setSelectedDept(opt.value)}
+                className={`px-3 py-1.5 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer ${
+                  selectedDept === opt.value
+                    ? 'bg-blue-800 text-amber-300 shadow-xs border border-blue-900'
+                    : 'bg-slate-100 text-slate-700 hover:bg-blue-50'
                 }`}
               >
-                All Departments
+                {opt.label}
               </button>
-              {FACULTY_DATA.map((dept) => (
-                <button
-                  key={dept.id}
-                  onClick={() => setSelectedDept(dept.id)}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer ${
-                    selectedDept === dept.id
-                      ? 'bg-blue-800 text-white shadow-xs border border-blue-900'
-                      : 'bg-slate-100 text-slate-700 hover:bg-blue-50/60'
-                  }`}
-                >
-                  {dept.code}
-                </button>
-              ))}
-            </div>
+            ))}
           </div>
 
           {/* Search Result Count summary */}
-          <div className="mt-3 flex items-center justify-between text-xs text-slate-500 font-mono">
+          <div className="mt-2.5 flex items-center justify-between text-xs text-slate-500 font-mono">
             <span>
-              Showing <strong className="text-blue-900">{totalFilteredCount}</strong> faculty members
+              Displaying <strong className="text-blue-900 font-bold">{totalFilteredCount}</strong> faculty members
             </span>
             {searchQuery && (
-              <span>Query: "{searchQuery}"</span>
+              <span>Filter Query: "{searchQuery}"</span>
             )}
           </div>
         </div>
       </section>
 
       {/* DEPARTMENT TABLES SECTION */}
-      <section className="py-14">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
           {filteredDepartments.length === 0 ? (
             <div className="bg-white p-12 rounded-2xl text-center border border-slate-200 shadow-sm">
               <Search className="h-12 w-12 text-slate-300 mx-auto mb-4" />
               <h3 className="text-lg font-bold text-slate-800">No matching faculty members found</h3>
-              <p className="text-xs text-slate-500 mt-1">Try adjusting your search keyword or department filter.</p>
+              <p className="text-xs text-slate-500 mt-1">Try adjusting your search query or department filter.</p>
               <button
                 onClick={() => { setSearchQuery(''); setSelectedDept('all'); }}
-                className="mt-4 px-4 py-2 bg-blue-800 text-white text-xs font-bold uppercase rounded-xl hover:bg-blue-900 transition-colors"
+                className="mt-4 px-4 py-2 bg-blue-800 text-white text-xs font-bold uppercase rounded-xl hover:bg-blue-900 transition-colors cursor-pointer"
               >
-                Reset Search Filters
+                Reset Filters
               </button>
             </div>
           ) : (
@@ -229,7 +265,7 @@ export default function Faculty() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="space-y-8"
+                className="space-y-6"
                 id={`dept-${dept.id}`}
               >
                 {/* Department Section Header */}
@@ -249,14 +285,14 @@ export default function Faculty() {
                   </div>
 
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-50 text-amber-900 border border-amber-300 shrink-0 self-start sm:self-auto">
-                    {dept.sections.reduce((acc, sec) => acc + sec.faculty.length, 0)} Total Members
+                    {dept.sections.reduce((acc, sec) => acc + sec.faculty.length, 0)} Members
                   </span>
                 </div>
 
-                {/* Render Sections (e.g., B.Tech & M.Tech) */}
-                <div className="space-y-10">
+                {/* Render Sections (e.g. B.Tech CSE, M.Tech CSE, CSE-AI, etc.) */}
+                <div className="space-y-8">
                   {dept.sections.map((section) => (
-                    <div key={section.id} className="space-y-4">
+                    <div key={section.id} className="space-y-3">
                       {/* Section Title Header */}
                       <div className="p-3.5 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white rounded-xl flex items-center justify-between shadow-xs border-l-4 border-amber-400">
                         <div>
@@ -302,7 +338,7 @@ export default function Faculty() {
                                         {member.name.replace(/^(Dr\.|Mrs\.|Mr\.|Ms\.)\s*/, '').charAt(0)}
                                       </div>
                                       {member.link ? (
-                                        <a href={member.link} className="hover:text-blue-600 hover:underline transition-colors">
+                                        <a href={member.link} className="hover:text-blue-600 hover:underline transition-colors font-bold text-blue-900">
                                           {member.name}
                                         </a>
                                       ) : (
