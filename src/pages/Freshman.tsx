@@ -40,8 +40,8 @@ const BOS_MEMBERS = [
   },
   {
     sno: 4,
-    name: 'Dr. B. V. Rami Reddy',
-    organization: 'Professor & Controller of Examinations, RCEW Kurnool',
+    name: 'Mrs. M. Jyothirmai',
+    organization: 'Assoc. Professor & Controller of Examinations, RCEW Kurnool',
     designation: 'Internal Member'
   },
   {

@@ -20,7 +20,7 @@ const IQAC_COMMITTEE_MEMBERS = [
   { sno: 1, name: "Dr. N. Sreekanth", profession: "Principal", designation: "Chairperson" },
   { sno: 2, name: "Dr. M. Giridhar Kumar", profession: "Dean Administration", designation: "Member" },
   { sno: 3, name: "Dr. Mohebbanaaz", profession: "Associate Dean Innovations", designation: "Member" },
-  { sno: 4, name: "Dr. B.V. Rami Reddy", profession: "Controller of Examinations", designation: "Member" },
+  { sno: 4, name: "Mrs. M. Jyothirmai", profession: "Controller of Examinations", designation: "Member" },
   { sno: 5, name: "Mrs. J Ushasree", profession: "Vice-Principal", designation: "Member" },
   { sno: 6, name: "Ms. Indhira Priyadharshini. Y", profession: "Head, Corporate Affairs", designation: "Member" },
   { sno: 7, name: "Dr. Madhusudana Reddy Barusu", profession: "HOD, ECE Department", designation: "Member" },
