@@ -27,10 +27,10 @@ const IQAC_COMMITTEE_MEMBERS = [
   { sno: 8, name: "Mrs. G. Spandana", profession: "HOD of Humanities and Sciences dept", designation: "Member" },
   { sno: 9, name: "Dr. G. Mamatha", profession: "Management", designation: "Member" },
   { sno: 10, name: "Dr. Y. Pandurangaiah", profession: "Ridge School, GVM Educational Society", designation: "Member" },
-  { sno: 11, name: "Ms. Shaik Reshma Begum", profession: "Alumni", designation: "Member" },
-  { sno: 12, name: "Ms. Aayesha Madiha", profession: "III B.Tech-(233TA05172)", designation: "Member" },
-  { sno: 13, name: "Ms. Mustabshira Pinjari", profession: "III B.Tech-(233TA05155)", designation: "Member" },
-  { sno: 14, name: "Dr. Madhusudana Reddy Barusu", profession: "Dean IQAC", designation: "Member" }
+  { sno: 11, name: "Dr. Madhusudana Reddy Barusu", profession: "Dean IQAC", designation: "Member" },
+  { sno: 12, name: "Ms. Shaik Reshma Begum", profession: "Alumni", designation: "Member" },
+  { sno: 13, name: "Ms. Aayesha Madiha", profession: "IV B.Tech-(233TA05172)", designation: "Member" },
+  { sno: 14, name: "Ms. Mustabshira Pinjari", profession: "IV B.Tech-(233TA05155)", designation: "Member" }
 ];
 
 // Functions & Responsibilities
