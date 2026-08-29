@@ -3,12 +3,14 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Award, ShieldCheck, CheckCircle2, GraduationCap, Play, Pause, X, Send, Phone, User, Mail, BookOpen, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// High-resolution local hero images for the 5 uploaded slides
+// High-resolution local hero images for the uploaded slides
 import HERO_SLIDE_1_AWARD from '../assets/images/hero_award_2026.jpg';
 import HERO_SLIDE_2_NIELIT from '../assets/images/hero_nielit_bootcamp.jpg';
 import HERO_SLIDE_3_HR_CONCLAVE from '../assets/images/hero_hr_conclave_2024.png';
 import HERO_SLIDE_4_CODING_LAB from '../assets/images/hero_student_coding_lab.png';
 import HERO_SLIDE_5_MENTORSHIP from '../assets/images/hero_faculty_mentorship.png';
+import HERO_SLIDE_6_NIELIT_FELICITATIONS from '../assets/images/rcew_nielit_felicitations.png';
+import HERO_SLIDE_7_SEMINAR_LAB from '../assets/images/rcew_seminar_lab_presentation.jpg';
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -42,6 +44,26 @@ export default function Hero() {
       tag: "NIELIT & MEITY NATIONAL WORKSHOP",
       badgeTag: "RAVW",
       image: HERO_SLIDE_2_NIELIT,
+      showEmblem: false,
+      objectPosition: "object-center"
+    },
+    {
+      title: "NIELIT MeitY Boot Camp Dignitaries Felicitations.",
+      highlightWord: "Dignitaries Felicitations.",
+      subtitle: "Honoring national trainers, expert faculty, and student participants at the MeitY funded 5-day SoC Sign-Off bootcamp.",
+      tag: "NIELIT & MEITY BOOTCAMP FELICITATIONS",
+      badgeTag: "RAVW",
+      image: HERO_SLIDE_6_NIELIT_FELICITATIONS,
+      showEmblem: false,
+      objectPosition: "object-center"
+    },
+    {
+      title: "Hands-on Technical Seminars & Coding Workshops.",
+      highlightWord: "Coding Workshops.",
+      subtitle: "State-of-the-art air-conditioned seminar halls and computer labs for continuous technical workshops and industry webinars.",
+      tag: "HANDS-ON SEMINARS & TECH WORKSHOPS",
+      badgeTag: "RAVW",
+      image: HERO_SLIDE_7_SEMINAR_LAB,
       showEmblem: false,
       objectPosition: "object-center"
     },
@@ -150,9 +172,8 @@ export default function Hero() {
           />
         </AnimatePresence>
 
-        {/* Clean bottom gradient overlay for text readability without darkening top/center of photo */}
-        <div className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-slate-950 via-slate-950/75 via-45% to-transparent pointer-events-none z-10" />
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-950/60 to-transparent pointer-events-none z-10" />
+        {/* Clean bright background without dark bottom shadow */}
+        <div className="absolute inset-0 bg-slate-950/15 pointer-events-none z-10" />
 
         {/* Navy & Gold Accent Framing Lines */}
         <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1e3a8a] via-[#f59e0b] to-[#1e3a8a] z-20" />
@@ -211,17 +232,17 @@ export default function Hero() {
               transition={{ duration: 0.5, ease: 'easeOut' }}
               className="space-y-3"
             >
-              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.18] drop-shadow-md">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.18] drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)]">
                 {renderTitle(slides[currentSlide].title, slides[currentSlide].highlightWord)}
               </h1>
 
               {/* Accent Blue Bar + Gold Dot */}
               <div className="flex items-center gap-2 pt-0.5">
-                <div className="w-14 h-1.5 bg-[#2563eb] rounded-full shadow-sm" />
-                <div className="w-2.5 h-2.5 bg-[#f59e0b] rounded-full shadow-sm" />
+                <div className="w-14 h-1.5 bg-[#2563eb] rounded-full shadow-md" />
+                <div className="w-2.5 h-2.5 bg-[#f59e0b] rounded-full shadow-md" />
               </div>
 
-              <p className="text-xs sm:text-sm lg:text-base text-slate-200 font-sans leading-relaxed max-w-2xl drop-shadow-sm">
+              <p className="text-xs sm:text-sm lg:text-base text-white font-sans font-medium leading-relaxed max-w-2xl drop-shadow-[0_3px_8px_rgba(0,0,0,0.95)]">
                 {slides[currentSlide].subtitle}
               </p>
             </motion.div>

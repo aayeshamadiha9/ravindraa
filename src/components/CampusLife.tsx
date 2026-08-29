@@ -35,7 +35,7 @@ export default function CampusLife() {
               key={facility.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: false, margin: '-40px' }}
               transition={{ duration: 0.5, delay: idx * 0.05 }}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
               className="group bg-slate-50 dark:bg-primary-900/30 rounded-3xl overflow-hidden border border-slate-100 dark:border-slate-800/60 shadow-sm hover:shadow-lg flex flex-col justify-between"

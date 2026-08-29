@@ -56,7 +56,7 @@ export default function Departments() {
               key={dept.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
+              viewport={{ once: false, margin: '-50px' }}
               transition={{ duration: 0.5, delay: idx * 0.05 }}
               whileHover={{ y: -6, transition: { duration: 0.2 } }}
               className="group bg-white dark:bg-primary-900 rounded-3xl overflow-hidden shadow-md hover:shadow-xl border border-slate-100 dark:border-slate-800/80 flex flex-col h-full"

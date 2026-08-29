@@ -33,6 +33,9 @@ import SWASTHA_AUDITORIUM_IMAGE from '../assets/images/rcew_swastha_auditorium_v
 import SPEAKEASY_FLASH_THEATER from '../assets/images/rcew_speakeasy_main_flash_theater.png';
 import HOME_STUDENTS_PROJECT_LAB from '../assets/images/rcew_home_students_project_lab.png';
 import NSS_EARTH_WEEK_IMAGE from '../assets/images/rcew_nss_earth_week.png';
+import NIELIT_FELICITATIONS_IMAGE from '../assets/images/rcew_nielit_felicitations.png';
+import SEMINAR_LAB_PRESENTATION_IMAGE from '../assets/images/rcew_seminar_lab_presentation.jpg';
+
 
 
 
@@ -235,6 +238,8 @@ export default function Home() {
     { img: HOME_DRONE_INNOVATION, title: "IEEE Drone Innovation & Flight Demo", badge: "IEEE Student Branch" },
     { img: HOME_TECH_LAB_EVENT, title: "Interactive Coding & Tech Lab Mentorship", badge: "Skill Mentorship" },
     { img: NSS_EARTH_WEEK_IMAGE, title: "Green Campus", badge: "NSS & Sustainability" },
+    { img: NIELIT_FELICITATIONS_IMAGE, title: "NIELIT Boot Camp Dignitaries Felicitations", badge: "National Workshop" },
+    { img: SEMINAR_LAB_PRESENTATION_IMAGE, title: "Hands-on Technical Seminars & Coding Workshops", badge: "Seminar Hall" },
     { img: HOME_FACULTY_EVENT, title: "Academic Conferences & Faculty Leadership", badge: "Conferences" },
     { img: HOME_BUILDING_FRONT, title: "State-of-the-Art Autonomous Campus", badge: "Main Campus" },
     { img: SWASTHA_AUDITORIUM_IMAGE, title: "Auditorium Seminars & Student Gatherings", badge: "Grand Assemblies" },
@@ -243,6 +248,7 @@ export default function Home() {
     { img: CLASSICAL_DANCE_PERFORMERS, title: "Cultural Fest & Classical Dance Performances", badge: "Arts & Culture" },
     { img: MUGDHA_CELEBRATIONS_IMAGE, title: "Annual Campus Fests & Celebrations", badge: "Mugdha Fest" },
   ];
+
 
 
 
@@ -268,7 +274,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 45, scale: 0.97 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={{ once: false, margin: "-60px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
           >
@@ -276,7 +282,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="lg:col-span-5 relative"
             >
@@ -300,7 +306,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-7 space-y-5"
             >
@@ -358,7 +364,7 @@ export default function Home() {
       <motion.section
         initial={{ opacity: 0, y: 50, scale: 0.96 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: false, margin: "-50px" }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         id="admissions-section"
         className="relative overflow-hidden py-8 sm:py-10 bg-gradient-to-r from-blue-950 via-indigo-950 to-slate-950 text-white border-y-2 border-yellow-400 shadow-lg my-6"
@@ -428,7 +434,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 45, scale: 0.97 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: false, margin: "-50px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="bg-white rounded-3xl shadow-md border border-slate-200 overflow-hidden"
           >
@@ -530,7 +536,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.6 }}
             className="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
           >
@@ -577,7 +583,7 @@ export default function Home() {
                 key={idx}
                 initial={{ opacity: 0, y: 35, scale: 0.94 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -5, scale: 1.03 }}
                 className="rounded-2xl overflow-hidden shadow-sm border border-slate-200 group cursor-pointer"
@@ -591,7 +597,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="overflow-x-auto rounded-2xl border border-slate-200 shadow-xs"
           >
@@ -630,7 +636,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-between mb-10"
           >
@@ -656,7 +662,7 @@ export default function Home() {
                 key={dept.id}
                 initial={{ opacity: 0, y: 45, scale: 0.94 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.6, delay: idx * 0.15 }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 className="group bg-slate-50 rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
@@ -702,7 +708,7 @@ export default function Home() {
       <motion.section
         initial={{ opacity: 0, y: 45, scale: 0.96 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: false, margin: "-40px" }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="relative overflow-hidden py-8 sm:py-10 bg-gradient-to-r from-slate-950 via-purple-950 to-indigo-950 text-white border-y-2 border-amber-400/50 shadow-lg my-6"
       >
@@ -746,7 +752,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
@@ -795,7 +801,8 @@ export default function Home() {
                   src={card.img}
                   alt={card.title}
                   className="w-full h-full object-cover group-hover/card:scale-108 transition-transform duration-700"
-                  loading="lazy"
+                  style={{ imageRendering: '-webkit-optimize-contrast', backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
+                  loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
                   {card.badge && (

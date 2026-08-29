@@ -11,7 +11,8 @@ interface CounterProps {
 function Counter({ value, suffix }: CounterProps) {
   const [count, setCount] = useState(0);
   const elementRef = useRef(null);
-  const isInView = useInView(elementRef, { once: true, amount: 0.3 });
+  const isInView = useInView(elementRef, { once: false, amount: 0.3 });
+
 
   useEffect(() => {
     if (!isInView) return;
@@ -69,7 +70,7 @@ export default function Stats() {
               key={stat.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
               className="flex flex-col items-center text-center p-6 rounded-2xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group hover:border-blue-300"
             >

@@ -35,7 +35,7 @@ export default function Events() {
               key={item.id}
               initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
+              viewport={{ once: false, margin: '-50px' }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               whileHover={{ y: -5 }}
               className="group bg-slate-50 dark:bg-primary-900/35 border border-slate-100 dark:border-slate-800/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-md flex flex-col md:flex-row h-full"
