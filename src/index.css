@@ -136,3 +136,24 @@ body {
   animation-play-state: paused;
 }
 
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-continuous {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 35s linear infinite;
+}
+
+.animate-marquee-continuous:hover,
+.group:hover .animate-marquee-continuous {
+  animation-play-state: paused;
+}
+
+

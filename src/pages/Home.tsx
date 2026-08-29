@@ -29,6 +29,12 @@ import HOME_DRONE_INNOVATION from '../assets/images/rcew_home_drone_innovation.p
 import HOME_BUILDING_FRONT from '../assets/images/rcew_home_building_front.png';
 import HOME_NIELIT_BOOTCAMP from '../assets/images/rcew_nielit_bootcamp_lamp_lighting.png';
 import HOME_TECH_LAB_EVENT from '../assets/images/rcew_home_tech_lab_event.png';
+import SWASTHA_AUDITORIUM_IMAGE from '../assets/images/rcew_swastha_auditorium_view.png';
+import SPEAKEASY_FLASH_THEATER from '../assets/images/rcew_speakeasy_main_flash_theater.png';
+import HOME_STUDENTS_PROJECT_LAB from '../assets/images/rcew_home_students_project_lab.png';
+import NSS_EARTH_WEEK_IMAGE from '../assets/images/rcew_nss_earth_week.png';
+
+
 
 // 1. CIRCULARS DATA (84 entries)
 const CIRCULARS_DATA = [
@@ -220,6 +226,25 @@ export default function Home() {
 
   // Interactive Placements Year State
   const [placementYear, setPlacementYear] = useState<'24-25' | '23-24'>('24-25');
+
+  // Visual Tour Marquee Hover State
+  const [isTourHovered, setIsTourHovered] = useState(false);
+
+  // Visual Tour Image Cards Collection
+  const VISUAL_TOUR_CARDS = [
+    { img: HOME_DRONE_INNOVATION, title: "IEEE Drone Innovation & Flight Demo", badge: "IEEE Student Branch" },
+    { img: HOME_TECH_LAB_EVENT, title: "Interactive Coding & Tech Lab Mentorship", badge: "Skill Mentorship" },
+    { img: NSS_EARTH_WEEK_IMAGE, title: "Green Campus", badge: "NSS & Sustainability" },
+    { img: HOME_FACULTY_EVENT, title: "Academic Conferences & Faculty Leadership", badge: "Conferences" },
+    { img: HOME_BUILDING_FRONT, title: "State-of-the-Art Autonomous Campus", badge: "Main Campus" },
+    { img: SWASTHA_AUDITORIUM_IMAGE, title: "Auditorium Seminars & Student Gatherings", badge: "Grand Assemblies" },
+    { img: SPEAKEASY_FLASH_THEATER, title: "Flash Theater & Cultural Club Events", badge: "SpeakEasy Club" },
+    { img: HOME_STUDENTS_PROJECT_LAB, title: "Advanced Computing & Coding Labs", badge: "Practical Training" },
+    { img: CLASSICAL_DANCE_PERFORMERS, title: "Cultural Fest & Classical Dance Performances", badge: "Arts & Culture" },
+    { img: MUGDHA_CELEBRATIONS_IMAGE, title: "Annual Campus Fests & Celebrations", badge: "Mugdha Fest" },
+  ];
+
+
 
   const filteredCirculars = CIRCULARS_DATA.filter(c => 
     c.title.toLowerCase().includes(noticeSearch.toLowerCase()) || c.date.includes(noticeSearch)
@@ -715,15 +740,15 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Visual Tour Section - Staggered Motion Reveal */}
+      {/* Visual Tour Section - Infinite Leftward Auto-Scrolling Marquee with Hover-to-Pause */}
       <section className="py-16 bg-slate-50 relative border-t border-slate-200 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-12"
+            className="text-center max-w-3xl mx-auto"
           >
             <span className="text-blue-600 text-xs font-bold uppercase tracking-widest font-mono">
               Life on Campus
@@ -732,52 +757,69 @@ export default function Home() {
               Campus Innovation & Visual Tour
             </h2>
             <div className="h-1 w-16 bg-yellow-500 mx-auto mt-3 rounded-full" />
+            <p className="text-xs sm:text-sm text-slate-500 mt-3 font-medium">
+              Hover your cursor over the box to pause scrolling and view image details
+            </p>
           </motion.div>
+        </div>
 
-          {/* 4 Staggered Pop-Up Campus Life Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { img: HOME_DRONE_INNOVATION, title: "IEEE Drone Innovation & Flight Demo" },
-              { img: HOME_TECH_LAB_EVENT, title: "Interactive Coding & Tech Lab Mentorship" },
-              { img: HOME_FACULTY_EVENT, title: "Academic Conferences & Faculty Leadership" },
-              { img: HOME_BUILDING_FRONT, title: "State-of-the-Art Autonomous Campus" },
-            ].map((card, idx) => (
-              <motion.div
+        {/* Auto-Scrolling Container with Hover-to-Pause */}
+        <div
+          className="relative w-full overflow-hidden py-4 group"
+          onMouseEnter={() => setIsTourHovered(true)}
+          onMouseLeave={() => setIsTourHovered(false)}
+        >
+          {/* Subtle gradient edge fades */}
+          <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
+
+          {/* Floating Hover Indicator Badge */}
+          {isTourHovered && (
+            <div className="absolute top-2 right-12 z-20 px-3 py-1 bg-amber-400 text-blue-950 text-xs font-bold font-mono rounded-full shadow-lg border border-amber-300 flex items-center gap-1.5 animate-pulse">
+              <span>⏸</span>
+              <span>Paused on Hover</span>
+            </div>
+          )}
+
+          {/* Marquee Track: Duplicated list for seamless leftward infinite loop */}
+          <div
+            className="flex gap-6 w-max animate-marquee-continuous transition-all duration-300"
+            style={{ animationPlayState: isTourHovered ? 'paused' : 'running' }}
+          >
+            {[...VISUAL_TOUR_CARDS, ...VISUAL_TOUR_CARDS].map((card, idx) => (
+              <div
                 key={idx}
-                initial={{ opacity: 0, y: 40, scale: 0.93 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.12 }}
-                whileHover={{ y: -6, scale: 1.03 }}
-                className="relative h-64 rounded-2xl overflow-hidden group shadow-sm border border-slate-200 cursor-pointer"
+                className="relative w-72 sm:w-80 h-64 sm:h-72 rounded-2xl overflow-hidden group/card shadow-md border border-slate-200/90 shrink-0 bg-slate-900 cursor-pointer hover:border-yellow-400 transition-all"
               >
                 <img
                   src={card.img}
                   alt={card.title}
-                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover/card:scale-108 transition-transform duration-700"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent flex items-end p-4">
-                  <span className="text-white text-xs font-serif font-bold drop-shadow-sm">{card.title}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
+                  {card.badge && (
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-yellow-300 bg-blue-950/80 px-2.5 py-0.5 rounded-md self-start mb-1.5 border border-yellow-400/30 backdrop-blur-xs">
+                      {card.badge}
+                    </span>
+                  )}
+                  <h3 className="text-white text-sm sm:text-base font-serif font-bold leading-snug drop-shadow-sm group-hover/card:text-yellow-300 transition-colors">
+                    {card.title}
+                  </h3>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-8 text-center"
+        {/* Action Button */}
+        <div className="mt-8 text-center">
+          <Link
+            to="/campus-life"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg hover:scale-105"
           >
-            <Link
-              to="/campus-life"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg"
-            >
-              Tour Campus & Facilities <ArrowRight className="h-4 w-4" />
-            </Link>
-          </motion.div>
+            Tour Campus & Facilities <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 
